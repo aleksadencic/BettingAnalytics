@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "betting-analytics-ui"
+    }
+  },
+  "defaultProject": "betting-analytics-ui",
+  "cli": {
+    "analytics": false
+  }
 }
