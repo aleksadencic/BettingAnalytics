@@ -1,70 +1,12 @@
-//Databases
-const oracle_db = require('../db/oracle_db');
+const entity_controller = require('./entity_controller');
+const communication_helper = require('../helpers/communication_helper');
 
 
 /* METHODS FOR COUNTRY ROUTES */
 
-// FIND ALL counties
-exports.findAllCountries = async() => {
-    let connection;
-    try {
-        connection = await oracle_db.connectToOracleDB();
-        const sql = `SELECT * FROM aleksa.country ORDER BY id ASC`;
-        const countries = await connection.execute(sql);
-        return countries.rows;
-    } catch (err) {
-        return {
-            'error': {
-                type: 'error',
-                message: `Can't get countries!`,
-                error: err
-            }
-        }
-    } finally {
-        oracle_db.disconnectFromOracleDB(connection);
-    }
-}
-
-// FIND county by id
-exports.findAllCountryById = async(country_id) => {
-    let connection;
-    try {
-        connection = await oracle_db.connectToOracleDB();
-        const sql = `SELECT * FROM aleksa.country WHERE id=${country_id} ORDER BY id ASC`;
-        const countries = await connection.execute(sql);
-        return countries.rows;
-    } catch (err) {
-        return {
-            'error': {
-                type: 'error',
-                message: `Can't get country by id!`,
-                error: err
-            }
-        }
-    } finally {
-        oracle_db.disconnectFromOracleDB(connection);
-    }
-}
-
-// FIND county by name
-exports.findAllCountryByName = async(country_name) => {
-    let connection;
-    try {
-        connection = await oracle_db.connectToOracleDB();
-        const sql = `SELECT * FROM aleksa.country WHERE name=${country_name} ORDER BY id ASC`;
-        const countries = await connection.execute(sql);
-        return countries.rows;
-    } catch (err) {
-        return {
-            'error': {
-                type: 'error',
-                message: `Can't get country by name!`,
-                error: err
-            }
-        }
-    } finally {
-        oracle_db.disconnectFromOracleDB(connection);
-    }
+// FIND counties
+exports.find = async(parameters) => {
+    return await entity_controller.find({ parameters: communication_helper.getParameters(parameters) });
 }
 
 // INSERT county
