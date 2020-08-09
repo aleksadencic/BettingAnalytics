@@ -1,26 +1,4 @@
-const express = require('express');
 const oracle_db = require('../db/oracle_db');
-
-/* EXAMPLE */
-// exports.find = async(table, columns = '*') => {
-//     let connection;
-//     try {
-//         connection = await oracle_db.connectToOracleDB();
-//         const sql = `SELECT ${columns} FROM ${table} ORDER BY id ASC`;
-//         const results = await connection.execute(sql);
-//         return results.rows;
-//     } catch (err) {
-//         return {
-//             'error': {
-//                 type: 'error',
-//                 message: `Can't get all rows from table ${table}!`,
-//                 error: err
-//             }
-//         }
-//     } finally {
-//         oracle_db.disconnectFromOracleDB(connection);
-//     }
-// }
 
 /* FIND */
 exports.find = async({ parameters } = {}) => {
@@ -135,6 +113,182 @@ exports.find = async({ parameters } = {}) => {
             'error': {
                 type: 'error',
                 message: `Can't find rows!`,
+                error: err
+            }
+        }
+    } finally {
+        oracle_db.disconnectFromOracleDB(connection);
+    }
+}
+
+/* INSERT */
+exports.insert = async({ parameters } = {}) => {
+    let connection;
+    let table = '';
+    let columns = '';
+    let values = '';
+    let sql = `INSERT INTO`;
+
+    parameters.filter(parameter => {
+        if (parameter.key === 'table') table = parameter.value;
+        if (parameter.key === 'columns') {
+            columns += '(';
+            parameter.value.filter(param => {
+                columns += param + ','
+            });
+            columns = columns.slice(0, -1);
+            columns += ')';
+        }
+        if (parameter.key === 'values') {
+            values += '(';
+            parameter.value.filter(param => {
+
+                values += typeof param === 'string' ? "'" + param + "'," : param + ','
+            });
+            values = values.slice(0, -1);
+            values += ')';
+        };
+    });
+
+    try {
+        connection = await oracle_db.connectToOracleDB();
+        if (table !== '') {
+            sql += ` ${table}`;
+        }
+        if (columns !== '') {
+            sql += ` ${columns}`;
+        }
+        sql += ' VALUES ';
+        if (values !== '') {
+            sql += `${values}`;
+        }
+        console.log(sql);
+        const results = await connection.execute(sql);
+        return results.rows;
+    } catch (err) {
+        return {
+            'error': {
+                type: 'error',
+                message: `Can't get all rows from table ${table}!`,
+                error: err
+            }
+        }
+    } finally {
+        oracle_db.disconnectFromOracleDB(connection);
+    }
+}
+
+/* UPDATE */
+exports.update = async({ parameters } = {}) => {
+    let connection;
+    let table = '';
+    let params = '';
+    let conditions = '';
+    let operator = 'AND';
+    let sql = ``;
+
+    parameters.filter(parameter => {
+        if (parameter.key === 'table') table = parameter.value;
+        if (parameter.key === 'params') {
+            parameter.value.filter(param => {
+                const value = typeof param.value === 'string' ? `'${param.value}'` : param.value;
+                params += `${param.key}=${value},`;
+            });
+            params = params.slice(0, -1);
+        }
+        if (parameter.key === 'conditions') {
+            conditions = parameter.value;
+        };
+        if (parameter.key === 'operator') {
+            operator = parameter.value;
+        };
+    });
+
+    try {
+        connection = await oracle_db.connectToOracleDB();
+        if (table !== '') {
+            sql += `UPDATE ${table}`;
+        }
+        if (params !== '') {
+            sql += ` SET ${params}`;
+        }
+        if (conditions !== '') {
+            queryConditions = '';
+            conditions.filter(param => {
+                const sign = params.sign === 'e' ? '=' :
+                    params.sign === 'gt' ? '>' :
+                    params.sign === 'gte' ? '>=' :
+                    params.sign === 'lt' ? '<' :
+                    params.sign === 'lte' ? '<=' :
+                    '=';
+                const value = typeof param.value === 'string' ? `'${param.value}'` : param.value;
+                queryConditions += `${param.column_name}${sign}${value} ${operator} `;
+            });
+            queryConditions = queryConditions.slice(0, 0 - operator.length - 2);
+            sql += ` WHERE ${queryConditions}`;
+        }
+        console.log(sql);
+        const results = await connection.execute(sql);
+        return results.rows;
+    } catch (err) {
+        return {
+            'error': {
+                type: 'error',
+                message: `Can't get all rows from table ${table}!`,
+                error: err
+            }
+        }
+    } finally {
+        oracle_db.disconnectFromOracleDB(connection);
+    }
+}
+
+/* DELETE */
+exports.delete = async({ parameters } = {}) => {
+    let connection;
+    let table = '';
+    let conditions = '';
+    let operator = 'AND';
+    let sql = ``;
+
+    parameters.filter(parameter => {
+        if (parameter.key === 'table') table = parameter.value;
+        if (parameter.key === 'conditions') {
+            conditions = parameter.value;
+        };
+        if (parameter.key === 'operator') {
+            operator = parameter.value;
+        };
+    });
+
+    try {
+        connection = await oracle_db.connectToOracleDB();
+        if (table !== '') {
+            sql += `DELETE FROM ${table}`;
+        }
+        if (conditions !== '') {
+            queryConditions = '';
+            conditions.filter(param => {
+                const sign = param.sign === 'e' ? '=' :
+                    param.sign === 'gt' ? '>' :
+                    param.sign === 'gte' ? '>=' :
+                    param.sign === 'lt' ? '<' :
+                    param.sign === 'lte' ? '<=' :
+                    '=';
+                const value = typeof param.value === 'string' ? `'${param.value}'` : param.value;
+                queryConditions += `${param.column_name}${sign}${value} ${operator} `;
+            });
+            queryConditions = queryConditions.slice(0, 0 - operator.length - 2);
+            sql += ` WHERE ${queryConditions}`;
+        }
+        console.log(sql);
+        const results = await connection.execute(sql);
+        return results.rows;
+    } catch (err) {
+        return {
+            'error': {
+                type: 'error',
+                message: `Can't get all rows from table ${table}!`,
                 error: err
             }
         }

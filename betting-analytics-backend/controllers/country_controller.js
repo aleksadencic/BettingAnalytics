@@ -6,76 +6,28 @@ const communication_helper = require('../helpers/communication_helper');
 
 // FIND counties
 exports.find = async(parameters) => {
-    return await entity_controller.find({ parameters: communication_helper.getParameters(parameters) });
+    return await entity_controller.find({
+        parameters: communication_helper.getParameters(parameters)
+    });
 }
 
 // INSERT county
-exports.insertCountry = async(country_name) => {
-    let connection;
-    try {
-        connection = await oracle_db.connectToOracleDB();
-        country_id = await getMaxCountryId(connection) + 1;
-        const sql = `INSERT INTO aleksa.country VALUES (${country_id}, '${country_name}')`;
-        const result = await connection.execute(sql);
-        return result;
-    } catch (err) {
-        return {
-            'error': {
-                type: 'error',
-                message: `Can't insert country!`,
-                error: err
-            }
-        }
-    } finally {
-        oracle_db.disconnectFromOracleDB(connection);
-    }
+exports.insertCountry = async(parameters) => {
+    return await entity_controller.insert({
+        parameters: communication_helper.getParameters(parameters)
+    });
 }
 
 // UPDATE county
-exports.updateCountry = async(country_name, new_country_name) => {
-    let connection;
-    try {
-        connection = await oracle_db.connectToOracleDB();
-        const sql = `UPDATE aleksa.country SET name = '${new_country_name}' WHERE name='${country_name}'`;
-        const result = await connection.execute(sql);
-        return result;
-    } catch (err) {
-        return {
-            'error': {
-                type: 'error',
-                message: `Can't update country with that country name!`,
-                error: err
-            }
-        }
-    } finally {
-        oracle_db.disconnectFromOracleDB(connection);
-    }
+exports.updateCountry = async(parameters) => {
+    return await entity_controller.update({
+        parameters: communication_helper.getParameters(parameters)
+    });
 }
 
 // DELETE county
-exports.deleteCountry = async(country_id) => {
-    let connection;
-    try {
-        connection = await oracle_db.connectToOracleDB();
-        const sql = `DELETE FROM aleksa.country WHERE id='${country_id}'`;
-        const result = await connection.execute(sql);
-        return result;
-    } catch (err) {
-        return {
-            'error': {
-                type: 'error',
-                message: `Can't delete country!`,
-                error: err
-            }
-        }
-    } finally {
-        oracle_db.disconnectFromOracleDB(connection);
-    }
-}
-
-getMaxCountryId = async(connection) => {
-    const sql = `SELECT MAX(id) as max_id FROM aleksa.country`;
-    const results = await connection.execute(sql);
-    const max_id = results.rows[0]['MAX_ID'];
-    return max_id;
+exports.deleteCountry = async(parameters) => {
+    return await entity_controller.delete({
+        parameters: communication_helper.getParameters(parameters)
+    });
 }
