@@ -169,7 +169,7 @@ exports.insert = async({ parameters } = {}) => {
         return {
             'error': {
                 type: 'error',
-                message: `Can't get all rows from table ${table}!`,
+                message: `Can't insert row into table ${table}!`,
                 error: err
             }
         }
@@ -234,7 +234,7 @@ exports.update = async({ parameters } = {}) => {
         return {
             'error': {
                 type: 'error',
-                message: `Can't get all rows from table ${table}!`,
+                message: `Can't update row in table ${table}!`,
                 error: err
             }
         }
@@ -288,7 +288,7 @@ exports.delete = async({ parameters } = {}) => {
         return {
             'error': {
                 type: 'error',
-                message: `Can't get all rows from table ${table}!`,
+                message: `Can't delete rows from table ${table}!`,
                 error: err
             }
         }
