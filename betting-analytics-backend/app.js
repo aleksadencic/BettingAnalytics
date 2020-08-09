@@ -6,12 +6,12 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const countryRouter = require('./routes/country_routes');
 const sportRouter = require('./routes/sport_routes');
 const teamRouter = require('./routes/team_routes');
 const teamPlayerRouter = require('./routes/team_player_routes');
 const matchRouter = require('./routes/match_routes');
+const countryRouter = require('./routes/country_routes');
+const cityRouter = require('./routes/city_routes');
 
 const app = express();
 
@@ -28,12 +28,12 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/countries', countryRouter);
 app.use('/sports', sportRouter);
 app.use('/teams', teamRouter);
 app.use('/teamPlayers', teamPlayerRouter);
 app.use('/matches', matchRouter);
+app.use('/countries', countryRouter);
+app.use('/cities', cityRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
