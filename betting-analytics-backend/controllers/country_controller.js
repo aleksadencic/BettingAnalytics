@@ -3,9 +3,11 @@ const communication_helper = require('../helpers/communication_helper');
 
 
 /* METHODS FOR COUNTRY ROUTES */
+table_name = 'country';
 
 // FIND counties
 exports.find = async(parameters) => {
+    parameters.table = table_name;
     return await entity_controller.find({
         parameters: communication_helper.getParameters(parameters)
     });
@@ -13,6 +15,7 @@ exports.find = async(parameters) => {
 
 // INSERT county
 exports.insertCountry = async(parameters) => {
+    parameters.table = table_name;
     return await entity_controller.insert({
         parameters: communication_helper.getParameters(parameters)
     });
@@ -20,6 +23,7 @@ exports.insertCountry = async(parameters) => {
 
 // UPDATE county
 exports.updateCountry = async(parameters) => {
+    parameters.table = table_name;
     return await entity_controller.update({
         parameters: communication_helper.getParameters(parameters)
     });
@@ -27,6 +31,7 @@ exports.updateCountry = async(parameters) => {
 
 // DELETE county
 exports.deleteCountry = async(parameters) => {
+    parameters.table = table_name;
     return await entity_controller.delete({
         parameters: communication_helper.getParameters(parameters)
     });
