@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const countryRouter = require('./routes/country_routes');
 const sportRouter = require('./routes/sport_routes');
+const teamRouter = require('./routes/team_routes');
 
 const app = express();
 
@@ -27,7 +28,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/countries', countryRouter);
-app.use('/sport', sportRouter);
+app.use('/sports', sportRouter);
+app.use('/teams', teamRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

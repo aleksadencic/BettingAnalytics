@@ -6,7 +6,7 @@ const team_controller = require('../controllers/team_controller');
 /* FIND teams */
 router.get('/', async(req, res, next) => {
     const teams = await team_controller.find(req.query)
-    communication_helper.sendResponse(Teams, res);
+    communication_helper.sendResponse(teams, res);
 });
 
 /* INSERT team */
