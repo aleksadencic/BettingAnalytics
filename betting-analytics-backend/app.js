@@ -14,6 +14,7 @@ const countryRouter = require('./routes/country_routes');
 const cityRouter = require('./routes/city_routes');
 const streetRouter = require('./routes/street_routes');
 const streetNumberRouter = require('./routes/street_number_routes');
+const paymentPointsRouter = require('./routes/payment_point_routes');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use('/countries', countryRouter);
 app.use('/cities', cityRouter);
 app.use('/streets', streetRouter);
 app.use('/streetNumbers', streetNumberRouter);
+app.use('/paymentPoints', paymentPointsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
