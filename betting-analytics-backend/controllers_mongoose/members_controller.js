@@ -36,10 +36,10 @@ exports.insert_member = async(req, res, next) => {
             country: req.body.country,
             city: req.body.city
         });
-        member.save((err, newProduct) => {
+        member.save((err, newMember) => {
             if (err) { return next(err); }
             mongo_db.disconnectFromMongoDB();
-            res.json(newProduct);
+            res.json(newMember);
         });
     });
 }
