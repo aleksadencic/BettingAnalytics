@@ -18,6 +18,7 @@ const paymentPointsRouter = require('./routes/payment_point_routes');
 const membersRouter = require('./routes/member_routes');
 const ticketsRouter = require('./routes/ticket_routes');
 const ticketRowsRouter = require('./routes/ticket_row_routes');
+const memberRouterMongoose = require('./routes_mongoose/members_routes');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use('/paymentPoints', paymentPointsRouter);
 app.use('/members', membersRouter);
 app.use('/tickets', ticketsRouter);
 app.use('/ticketRows', ticketRowsRouter);
+app.use('/segmentation/members', memberRouterMongoose);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
