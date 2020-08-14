@@ -1,0 +1,29 @@
+:host {
+    .menu-button {
+        display: flex;
+        justify-content: center;
+        background-color: #00565b;
+        color: #ffffff;
+    }
+    .menu-button:hover {
+        background-color: #00565b;
+        color: rgba(255, 255, 255, 0.363);
+    }
+    .header-toolbar {
+        background-color: #00565b;
+        color: #ffffff;
+        height: 60px;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .router-outlet-class {
+        height: 87vh;
+    }
+    mat-sidenav {
+        width: 200px;
+        background-color: #ffffff;
+        border-right: 1px solid rgba(0, 86, 91, 0.5);
+        ;
+    }
+}
