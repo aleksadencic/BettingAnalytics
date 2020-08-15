@@ -1,5 +1,5 @@
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,6 +17,7 @@ import { SegmentationModule } from './segmentation/segmentation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SegmentationComponent } from './segmentation/segmentation.component';
+import { FinancialAnalyticsComponent } from './financial-analytics/financial-analytics.component';
 
 export const metaReducers: MetaReducer<{}>[] = []; 
 export const reducers: ActionReducerMap<{}> = {
@@ -26,7 +27,7 @@ export const reducers: ActionReducerMap<{}> = {
 @NgModule({
   declarations: [
     AppComponent,
-    SegmentationComponent
+    routingComponents
   ],
   imports: [
     BrowserModule,
