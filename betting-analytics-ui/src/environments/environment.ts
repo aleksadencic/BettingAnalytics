@@ -5,6 +5,72 @@
 export const environment = {
   production: false
 };
+export const types = [
+  {value: 'year', viewValue: 'Annual'},
+  {value: 'month', viewValue: 'Monthly'},
+  {value: 'day', viewValue: 'Daily'},
+];
+export const products = [
+  {value: 'sport_classic', viewValue: 'Sport Classic Betting'},
+  {value: 'sport_live', viewValue: 'Sport Live Betting'},
+  {value: 'casino', viewValue: 'Casino'},
+  {value: 'loto', viewValue: 'Loto and lucky games'},
+  {value: 'virtual', viewValue: 'Virtual games'},
+  {value: 'mix', viewValue: 'Mix'},
+];
+export const parameters = [
+  {value: 'amount', viewValue: 'Amount'},
+  {value: 'payment', viewValue: 'Payment'},
+  {value: 'players', viewValue: 'Number of players'},
+];
+export const genders = [
+  {value: 'm', viewValue: 'Male'},
+  {value: 'f', viewValue: 'Female'},
+];
+export const budgets = [
+  {value: '0-5', viewValue: '0-5'},
+  {value: '5-10', viewValue: '5-10'},
+  {value: '10-30', viewValue: '10-30'},
+  {value: '30-100', viewValue: '30-100'},
+  {value: '100+', viewValue: '100+'},
+];
+export const platforms = [
+  {value: 'land', viewValue: 'Land'},
+  {value: 'web', viewValue: 'Web'},
+];
+export const frequencies = [
+  {value: 'advanced', viewValue: 'Advanced'},
+  {value: 'regular', viewValue: 'Regular'},
+  {value: 'average', viewValue: 'Average'},
+  {value: 'periodical', viewValue: 'Periodical'},
+  {value: 'passive', viewValue: 'Passive'},
+  {value: 'sleepy', viewValue: 'Sleepy'},
+  {value: 'inactive', viewValue: 'Inactive'},
+];
+export const age_groups = [
+  {value: '(18-25]', viewValue: '18-25'},
+  {value: '(26-34]', viewValue: '26-34'},
+  {value: '(35-40]', viewValue: '35-40'},
+  {value: '(41-50]', viewValue: '41-50'},
+  {value: '50+', viewValue: '50+'}
+];
+export const categories = [
+  {value: 'sport_classic', viewValue: 'Sport Classic Betting'},
+  {value: 'sport_live', viewValue: 'Sport Live Betting'},
+  {value: 'casino', viewValue: 'Casino'},
+  {value: 'loto', viewValue: 'Loto and lucky games'},
+  {value: 'virtual', viewValue: 'Virtual games'},
+  {value: 'mix', viewValue: 'Mix'},
+];
+export const presences = [
+  {value: 'old', viewValue: 'Old'},
+  {value: 'new', viewValue: 'New'},
+];
+export const countries = [
+  {value: 'serbia', viewValue: 'Serbia'},
+  {value: 'montenegro', viewValue: 'Montenegro'},
+  {value: 'bosnia', viewValue: 'Bosnia & Herzegovina'}
+];
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import * as variables from '../../environments/environment'
 // import * as am4core from "@amcharts/amcharts4/core";
 // import * as am4charts from "@amcharts/amcharts4/charts";
 // import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -23,64 +24,17 @@ export class SegmentationComponent implements OnInit {
   categories = [];
   presences = [];
   countries = [];
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-  toppings = new FormControl();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   constructor(private zone: NgZone) { 
     this.selected = new FormControl(0);
-    this.genders = [
-      {value: 'm', viewValue: 'Male'},
-      {value: 'f', viewValue: 'Female'},
-    ];
-    this.budgets = [
-      {value: '0-5', viewValue: '0-5'},
-      {value: '5-10', viewValue: '5-10'},
-      {value: '10-30', viewValue: '10-30'},
-      {value: '30-100', viewValue: '30-100'},
-      {value: '100+', viewValue: '100+'},
-    ];
-    this.platforms = [
-      {value: 'land', viewValue: 'Land'},
-      {value: 'web', viewValue: 'Web'},
-    ];;
-    this.frequencies = [
-      {value: 'advanced', viewValue: 'Advanced'},
-      {value: 'regular', viewValue: 'Regular'},
-      {value: 'average', viewValue: 'Average'},
-      {value: 'periodical', viewValue: 'Periodical'},
-      {value: 'passive', viewValue: 'Passive'},
-      {value: 'sleepy', viewValue: 'Sleepy'},
-      {value: 'inactive', viewValue: 'Inactive'},
-    ];;
-    this.age_groups = [
-      {value: '(18-25]', viewValue: '18-25'},
-      {value: '(26-34]', viewValue: '26-34'},
-      {value: '(35-40]', viewValue: '35-40'},
-      {value: '(41-50]', viewValue: '41-50'},
-      {value: '50+', viewValue: '50+'}
-    ];;
-    this.categories = [
-      {value: 'sport_classic', viewValue: 'Sport Classic Betting'},
-      {value: 'sport_live', viewValue: 'Sport Live Betting'},
-      {value: 'casino', viewValue: 'Casino'},
-      {value: 'loto', viewValue: 'Loto and lucky games'},
-      {value: 'virtual', viewValue: 'Virtual games'},
-      {value: 'mix', viewValue: 'Mix'},
-    ];;
-    this.presences = [
-      {value: 'old', viewValue: 'Old'},
-      {value: 'new', viewValue: 'New'},
-    ];;
-    this.countries = [
-      {value: 'serbia', viewValue: 'Serbia'},
-      {value: 'montenegro', viewValue: 'Montenegro'},
-      {value: 'bosnia', viewValue: 'Bosnia & Herzegovina'}
-    ];;
+    this.genders = variables.genders;
+    this.budgets = variables.budgets;
+    this.platforms = variables.platforms;
+    this.frequencies = variables.frequencies;
+    this.age_groups = variables.age_groups;
+    this.categories = variables.categories;
+    this.presences = variables.presences;
+    this.countries = variables.countries;
   }
 
   ngOnInit(): void {
