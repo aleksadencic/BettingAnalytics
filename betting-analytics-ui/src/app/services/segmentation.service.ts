@@ -15,7 +15,7 @@ export class SegmentationService {
 
   constructor(private http: HttpClient) { }
 
-  getSegmntationData() {
+  getSegmentationData() {
     const endpointUrl = `${this.baseUrlMongo}/segmentation`;
     return this.http.get(endpointUrl).pipe(
       map(

@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { SegmentationService } from '../services/segmentation.service';
 import * as variables from '../../environments/environment'
 // import * as am4core from "@amcharts/amcharts4/core";
 // import * as am4charts from "@amcharts/amcharts4/charts";
@@ -16,16 +17,25 @@ export class SegmentationComponent implements OnInit {
   isDataLoading = false;
   selected;
   // chart: am4charts.XYChart;
-  genders = [];
-  budgets = [];
-  platforms = [];
-  frequencies = [];
-  age_groups = [];
-  categories = [];
-  presences = [];
-  countries = [];
+  genders;
+  budgets;
+  platforms;
+  frequencies;
+  age_groups;
+  categories;
+  presences;
+  countries;
+  selectedGenders;
+  selectedBudgets;
+  selectedPlatforms;
+  selectedFrequencies;
+  selectedAgeGroups;
+  selectedCategories;
+  selectedPresences;
+  selectedCountries;
 
-  constructor(private zone: NgZone) { 
+  constructor(private zone: NgZone,
+              private segmentationService: SegmentationService) { 
     this.selected = new FormControl(0);
     this.genders = variables.genders;
     this.budgets = variables.budgets;
@@ -38,6 +48,21 @@ export class SegmentationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  launch(){
+    console.log(
+      this.selectedGenders,
+      this.selectedBudgets,
+      this.selectedPlatforms,
+      this.selectedFrequencies,
+      this.selectedAgeGroups,
+      this.selectedCategories,
+      this.selectedPresences,
+      this.selectedCountries);
+    this.segmentationService.getSegmentationData().subscribe(results => {
+      console.log(results);
+    });
   }
 
   ngAfterViewInit() {

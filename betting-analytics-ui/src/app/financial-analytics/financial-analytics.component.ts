@@ -29,7 +29,7 @@ export class FinancialAnalyticsComponent implements OnInit {
   // chart: am4charts.XYChart;
   
   constructor(private zone: NgZone,
-              private financialAnalyticservice: FinancialAnalyticsService) {                
+              private financialAnalyticsService: FinancialAnalyticsService) {                
     this.selected = new FormControl(0);
     this.types = variables.types;
     this.products = variables.products;
@@ -46,7 +46,7 @@ export class FinancialAnalyticsComponent implements OnInit {
                 this.selectedProducts,
                 this.selectedParameters,
                 this.selectedPlatforms);
-    this.financialAnalyticservice.getFinancials().subscribe(results => {
+    this.financialAnalyticsService.getFinancials().subscribe(results => {
       console.log(results);
     });
   }
