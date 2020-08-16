@@ -1,11 +1,11 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { FinancialAnalyticsService } from '../services/financial-analytics.service';
 import * as variables from '../../environments/environment';
 // import * as am4core from "@amcharts/amcharts4/core";
 // import * as am4charts from "@amcharts/amcharts4/charts";
 // import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 // am4core.useTheme(am4themes_animated);
-
 
 @Component({
   selector: 'app-financial-analytics',
@@ -23,7 +23,8 @@ export class FinancialAnalyticsComponent implements OnInit {
   parameters;
   // chart: am4charts.XYChart;
   
-  constructor(private zone: NgZone) {
+  constructor(private zone: NgZone,
+              private financialAnalyticservice: FinancialAnalyticsService) {
     this.selected = new FormControl(0);
     this.types = variables.types;
     this.products = variables.products;
@@ -33,6 +34,13 @@ export class FinancialAnalyticsComponent implements OnInit {
   }
   
   ngOnInit(): void {}
+
+  launch(){
+    this.financialAnalyticservice.getFinancials().subscribe(results => {
+      console.log('uspesno');
+    });
+    console.log("aleksa");
+  }
   
 
 }

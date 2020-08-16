@@ -20,6 +20,7 @@ const ticketsRouter = require('./routes/ticket_routes');
 const ticketRowsRouter = require('./routes/ticket_row_routes');
 const memberRouterMongoose = require('./routes_mongoose/members_routes');
 const etlRouter = require('./etl_jobs/routes/etl_routes');
+const cors = require('cors')
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(cors())
 
 app.use('/', indexRouter);
 app.use('/sports', sportRouter);
@@ -48,7 +50,7 @@ app.use('/paymentPoints', paymentPointsRouter);
 app.use('/members', membersRouter);
 app.use('/tickets', ticketsRouter);
 app.use('/ticketRows', ticketRowsRouter);
-app.use('/segmentation/members', memberRouterMongoose);
+app.use('/segmentation', memberRouterMongoose);
 app.use('/etl', etlRouter);
 
 // catch 404 and forward to error handler

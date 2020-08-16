@@ -5,6 +5,8 @@
 export const environment = {
   production: false
 };
+export const base_url_mongo = 'http://localhost:3000';
+export const base_url_oracle = 'http://localhost:3000';
 export const types = [
   {value: 'year', viewValue: 'Annual'},
   {value: 'month', viewValue: 'Monthly'},

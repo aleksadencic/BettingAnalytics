@@ -1,0 +1,14 @@
+{
+    "/segmentation/*": {
+        "target": "https://localhost:4200/",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/financial-analytics/*": {
+        "target": "https://localhost:4200/",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}
