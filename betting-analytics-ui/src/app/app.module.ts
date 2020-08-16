@@ -15,6 +15,7 @@ import { NgrxRouterStoreModule } from './store/reducers/router/ngrx-router.modul
 import { MaterialModule } from './material/material.module';
 import { SegmentationModule } from './segmentation/segmentation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SegmentationComponent } from './segmentation/segmentation.component';
 import { FinancialAnalyticsComponent } from './financial-analytics/financial-analytics.component';
@@ -44,6 +45,7 @@ export const reducers: ActionReducerMap<{}> = {
     StoreDevtoolsModule.instrument(),
     NgrxRouterStoreModule,
     BrowserAnimationsModule,
+    // NoopAnimationsModule,
     AppRoutingModule,
   ],
   providers: [],

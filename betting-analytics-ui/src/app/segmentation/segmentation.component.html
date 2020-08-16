@@ -1,1 +1,81 @@
-<p>segmentation works!</p>
+<mat-tab-group [selectedIndex]="selected.value">
+    <mat-tab label="Filters">
+        <mat-card>
+            <div fxLayout="column" fxLayoutAlign="space-around center">
+                <mat-form-field appearance="standard">
+                    <mat-label>Gender</mat-label>
+                    <mat-select multiple>
+                        <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                            {{ gender.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Budget</mat-label>
+                    <mat-select multiple>
+                        <mat-option *ngFor="let budget of budgets" [value]="budget.value">
+                            {{ budget.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Platform</mat-label>
+                    <mat-select multiple>
+                        <mat-option *ngFor="let platform of platforms" [value]="platform.value">
+                            {{ platform.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Frequency</mat-label>
+                    <mat-select multiple>
+                        <mat-option *ngFor="let frequency of frequencies" [value]="frequency.value">
+                            {{ frequency.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Age group</mat-label>
+                    <mat-select multiple>
+                        <mat-option *ngFor="let age_group of age_groups" [value]="age_group.value">
+                            {{ age_group.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Category</mat-label>
+                    <mat-select multiple>
+                        <mat-option *ngFor="let category of categories" [value]="category.value">
+                            {{ category.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Member presence</mat-label>
+                    <mat-select multiple>
+                        <mat-option *ngFor="let presence of presences" [value]="presence.value">
+                            {{ presence.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                    <mat-label>Country</mat-label>
+                    <mat-select multiple>
+                        <mat-option *ngFor="let country of countries" [value]="country.value">
+                            {{ country.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-stroked-button>Launch</button>
+
+            </div>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Results">
+        <mat-card>
+            Results
+            <div id="financialChart" style="width: 100%; height: 500px"></div>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Warrnings & Errors" disabled="!isDataLoaded ">Warrnings & Errors</mat-tab>
+</mat-tab-group>

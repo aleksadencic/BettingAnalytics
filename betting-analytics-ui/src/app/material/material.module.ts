@@ -8,6 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [ ],
@@ -21,6 +23,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatListModule,
     MatToolbarModule,
+    MatTabsModule,
+    MatCardModule,
   ],
   imports: [
     MatSidenavModule,
@@ -32,6 +36,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatListModule,
     MatToolbarModule,
+    MatTabsModule,
+    MatCardModule,
   ],
 })
 export class MaterialModule { }
