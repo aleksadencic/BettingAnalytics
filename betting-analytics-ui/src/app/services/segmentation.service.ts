@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class FinancialAnalyticsService {
+export class SegmentationService {
 
   subs = new Subscription();
   baseUrlMongo = variables.base_url_mongo;
@@ -15,7 +15,7 @@ export class FinancialAnalyticsService {
 
   constructor(private http: HttpClient) { }
 
-  getFinancials() {
+  getSegmntationData() {
     const endpointUrl = `${this.baseUrlMongo}/segmentation`;
     return this.http.get(endpointUrl).pipe(
       map(
@@ -26,6 +26,4 @@ export class FinancialAnalyticsService {
       ),
     );
   }
-
-
 }

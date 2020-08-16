@@ -21,10 +21,15 @@ export class FinancialAnalyticsComponent implements OnInit {
   countries;
   platforms;
   parameters;
+  selectedType;
+  selectedProducts;
+  selectedCountries;
+  selectedPlatforms;
+  selectedParameters;
   // chart: am4charts.XYChart;
   
   constructor(private zone: NgZone,
-              private financialAnalyticservice: FinancialAnalyticsService) {
+              private financialAnalyticservice: FinancialAnalyticsService) {                
     this.selected = new FormControl(0);
     this.types = variables.types;
     this.products = variables.products;
@@ -36,10 +41,14 @@ export class FinancialAnalyticsComponent implements OnInit {
   ngOnInit(): void {}
 
   launch(){
+    console.log(this.selectedType,
+                this.selectedCountries, 
+                this.selectedProducts,
+                this.selectedParameters,
+                this.selectedPlatforms);
     this.financialAnalyticservice.getFinancials().subscribe(results => {
-      console.log('uspesno');
+      console.log(results);
     });
-    console.log("aleksa");
   }
   
 
