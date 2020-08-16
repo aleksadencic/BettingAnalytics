@@ -19,6 +19,7 @@ const membersRouter = require('./routes/member_routes');
 const ticketsRouter = require('./routes/ticket_routes');
 const ticketRowsRouter = require('./routes/ticket_row_routes');
 const memberRouterMongoose = require('./routes_mongoose/members_routes');
+const financialsRouterMongoose = require('./routes_mongoose/financials_routes');
 const etlRouter = require('./etl_jobs/routes/etl_routes');
 const cors = require('cors')
 
@@ -51,6 +52,7 @@ app.use('/members', membersRouter);
 app.use('/tickets', ticketsRouter);
 app.use('/ticketRows', ticketRowsRouter);
 app.use('/segmentation', memberRouterMongoose);
+app.use('/financial-analytics', financialsRouterMongoose);
 app.use('/etl', etlRouter);
 
 // catch 404 and forward to error handler
