@@ -26,14 +26,14 @@ export const parameters = [
   {value: 'players', viewValue: 'Number of players'},
 ];
 export const genders = [
-  {value: 'm', viewValue: 'Male'},
-  {value: 'f', viewValue: 'Female'},
+  {value: 'male', viewValue: 'Male'},
+  {value: 'female', viewValue: 'Female'},
 ];
 export const budgets = [
-  {value: '0-5', viewValue: '0-5'},
-  {value: '5-10', viewValue: '5-10'},
-  {value: '10-30', viewValue: '10-30'},
-  {value: '30-100', viewValue: '30-100'},
+  {value: '(0-5]', viewValue: '0-5'},
+  {value: '(5-10]', viewValue: '5-10'},
+  {value: '(10-30]', viewValue: '10-30'},
+  {value: '(30-100]', viewValue: '30-100'},
   {value: '100+', viewValue: '100+'},
 ];
 export const platforms = [

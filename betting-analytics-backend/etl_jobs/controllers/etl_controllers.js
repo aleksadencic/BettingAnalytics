@@ -13,3 +13,13 @@ exports.members_segmentation = async(req, res, next) => {
         res.json('Segmentation ETL is finished successfully!');
     }
 }
+
+// Financial analytics ETL process
+exports.financials = async(req, res, next) => {
+    const results = await mongo_db_helper.insertFinancials();
+    if (results && results.hasOwnProperty('error')) {
+        res.status(500).json(results.error);
+    } else {
+        res.json(results);
+    }
+}
