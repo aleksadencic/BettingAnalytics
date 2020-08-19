@@ -129,17 +129,17 @@ exports.insertFinancials = async() => {
                                 number_of_tickets: tickets,
                                 pr: payment / amount,
                             });
-                            financial.save((err, financialObj) => {
-                                if (err) {
-                                    return {
-                                        'error': {
-                                            type: 'error',
-                                            message: `Error occurred while members segmentation ETL is executing!`,
-                                            error: err
-                                        }
-                                    }
-                                } else {}
-                            });
+                            // financial.save((err, financialObj) => {
+                            //     if (err) {
+                            //         return {
+                            //             'error': {
+                            //                 type: 'error',
+                            //                 message: `Error occurred while members segmentation ETL is executing!`,
+                            //                 error: err
+                            //             }
+                            //         }
+                            //     } else {}
+                            // });
                         });
                     })
                 }
