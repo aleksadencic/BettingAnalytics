@@ -18,6 +18,7 @@ import { FinancialAnalyticsModule } from './financial-analytics/financial-analyt
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { SegmentationComponent } from './segmentation/segmentation.component';
 import { FinancialAnalyticsComponent } from './financial-analytics/financial-analytics.component';
@@ -49,6 +50,7 @@ export const reducers: ActionReducerMap<{}> = {
     NgrxRouterStoreModule,
     BrowserAnimationsModule,
     ChartsModule,
+    AgGridModule,
     // NoopAnimationsModule,
     AppRoutingModule,
   ],

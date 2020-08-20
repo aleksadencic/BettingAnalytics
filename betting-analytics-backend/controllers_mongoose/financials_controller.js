@@ -4,12 +4,32 @@ const mongoose = require('mongoose');
 
 // Find all financials
 exports.find_financials = async(req, res, next) => {
+        await mongo_db.connectToMongoDB();
+        await Financial.find({ id: { $ne: 0 } })
+            .exec(async(err, financials) => {
+                if (err) { return next(err); }
+                mongo_db.disconnectFromMongoDB();
+                await res.json(financials);
+            });
+    }
+    // Products analytics
+exports.products_analytics = async(req, res, next) => {
+    const countries = req.body;
     await mongo_db.connectToMongoDB();
-    await Financial.find({ id: { $ne: 0 } })
-        .exec(async(err, financials) => {
-            if (err) { return next(err); }
-            mongo_db.disconnectFromMongoDB();
-            await res.json(financials);
+    await Financial.aggregate([{
+            $match: {
+                country: { $in: countries },
+            }
+        }, {
+            $group: {
+                _id: { product: '$product', platform: '$platform' },
+                amount: { $sum: '$amount' },
+                payment: { $sum: '$payment' },
+                number_of_tickets: { $sum: '$number_of_tickets' },
+            }
+        }],
+        (err, financials) => {
+            res.json(financials);
         });
 }
 

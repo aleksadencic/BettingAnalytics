@@ -27,5 +27,17 @@ export class FinancialAnalyticsService {
     );
   }
 
+  getProductsAnalytics(countries){
+    const endpointUrl = `${this.baseUrlMongo}/financial-analytics/products`;
+    return this.http.post(endpointUrl, countries).pipe(
+      map(
+        results => {
+          return results;
+        },
+        error => console.log(error),
+      ),
+    );
+  }
+
 
 }
