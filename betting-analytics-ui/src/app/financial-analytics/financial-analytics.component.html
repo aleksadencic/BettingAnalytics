@@ -1,7 +1,7 @@
 <mat-tab-group [selectedIndex]='selected.value'>
     <mat-tab label='Financial Portfolio'>
         <div fxFlex fxLayout="column">
-            <mat-card fxFlex>
+            <mat-card class='mat-card-big' fxFlex>
                 <div fxLayout='row' fxLayoutAlign='space-around center'>
                     <mat-form-field appearance='standard'>
                         <mat-label>Report Type</mat-label>
@@ -38,33 +38,33 @@
                     <button mat-stroked-button class='launchButton' (click)='launch()'>Launch</button>
                 </div>
             </mat-card>
-            <mat-card fxFlex>
+            <mat-card class='mat-card-big' fxFlex>
                 <ag-grid-angular class="ag-theme-alpine financials-grid" [gridOptions]="financialsGridOptions">
                 </ag-grid-angular>
             </mat-card>
-            <mat-card *ngIf='financialsData && selectedType && selectedType!=="day"' fxFlex>
+            <mat-card class='mat-card-big' *ngIf='financialsData && selectedType && selectedType!=="day"' fxFlex>
                 <div>
                     <canvas baseChart class='financialsBarChart' [datasets]='barChartDataYearFinChart' [labels]='barChartLabelsYearFinChart' [options]='barChartOptionsYearFinChart' [plugins]='barChartPluginsYearFinChart' [legend]='barChartLegendYearFinChart' [chartType]='barChartTypeYearFinChart'
                         [colors]='barChartColorsYearFinChart'>
                       </canvas>
                 </div>
             </mat-card>
-            <div fxLayout="row" fxFlex>
-                <mat-card *ngIf='productsAnalyticsData' fxFlex>
-                    <canvas fxFlex baseChart [data]="doughnutChartDataProductAnalytics" [labels]="doughnutChartLabelsProductAnalytics" [options]='doughnutChartOptionsProductsAnalytics' [chartType]="doughnutChartTypeProductAnalytics">
-                </canvas>
-
-
-                </mat-card>
-                <mat-card fxFlex>
-                    <!-- <canvas fxFlex baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
-                </canvas> -->
-                </mat-card>
-            </div>
-            <mat-card fxFlex>
-                <div>
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                <div fxFlex>
+                    <mat-card class='mat-card-medium productsDoghnutsChart' *ngIf='productsAnalyticsData' fxFlex>
+                        <canvas fxFlex baseChart [data]="doughnutChartDataProductAnalytics" [labels]="doughnutChartLabelsProductAnalytics" [options]='doughnutChartOptionsProductsAnalytics' [chartType]="doughnutChartTypeProductAnalytics">
+                        </canvas>
+                    </mat-card>
                 </div>
-            </mat-card>
+                <div fxFlex>
+                    <mat-card class='mat-card-medium countriesDoghnutsChart' *ngIf='countriesAnalyticsData' fxFlex>
+                        <div fxFlex>
+                            <canvas fxFlex baseChart [data]="doughnutChartDataCountriesAnalytics" [labels]="doughnutChartLabelsCountriesAnalytics" [options]='doughnutChartOptionsCountriesAnalytics' [chartType]="doughnutChartTypeCountriesAnalytics">
+                            </canvas>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
         </div>
     </mat-tab>
 </mat-tab-group>

@@ -33,6 +33,27 @@ exports.products_analytics = async(req, res, next) => {
         });
 }
 
+// Countries analytics
+exports.countries_analytics = async(req, res, next) => {
+    const products = req.body;
+    await mongo_db.connectToMongoDB();
+    await Financial.aggregate([{
+            $match: {
+                product: { $in: products },
+            }
+        }, {
+            $group: {
+                _id: { country: '$country' },
+                amount: { $sum: '$amount' },
+                payment: { $sum: '$payment' },
+                number_of_tickets: { $sum: '$number_of_tickets' },
+            }
+        }],
+        (err, financials) => {
+            res.json(financials);
+        });
+}
+
 // Find financials with parameters
 exports.find_financials_with_parameters = async(req, res, next) => {
     const reportType = req.body.reportType;

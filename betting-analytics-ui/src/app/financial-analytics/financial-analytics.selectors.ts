@@ -14,3 +14,8 @@ export const getProductsAnalyticsData = createSelector(
     getFinancialsState,
     (financials: FinancialAnalyticsState) => financials.productsAnalyticsData,
 );
+
+export const getCountriesAnalyticsData = createSelector(
+    getFinancialsState,
+    (financials: FinancialAnalyticsState) => financials.countriesAnalyticsData,
+);

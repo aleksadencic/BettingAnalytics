@@ -12,8 +12,11 @@ router.get('/', financials_controller.find_financials);
 // POST request for list of all financials with parameters
 router.post('/find', financials_controller.find_financials_with_parameters);
 
-// POST request for data by products 
+// POST request for data analytics by products 
 router.post('/products', financials_controller.products_analytics);
+
+// POST request for data analytics by countries 
+router.post('/countries', financials_controller.countries_analytics);
 
 // POST request for inserting new financials
 // router.post('/insert', financials_controller.insert_financial);

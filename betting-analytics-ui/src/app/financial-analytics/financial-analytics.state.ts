@@ -3,6 +3,7 @@ export interface FinancialAnalyticsState {
     isDataLaunching: boolean;
     data: any;
     productsAnalyticsData: any;
+    countriesAnalyticsData: any;
 };
 
 export const initialFinancialAnalyticsState = {
@@ -10,4 +11,5 @@ export const initialFinancialAnalyticsState = {
     isDataLaunching: false,
     data: null,
     productsAnalyticsData: null,
+    countriesAnalyticsData: null,
 };

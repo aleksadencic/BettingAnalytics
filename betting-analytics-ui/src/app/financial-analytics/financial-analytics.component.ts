@@ -4,7 +4,7 @@ import { FinancialAnalyticsService } from '../services/financial-analytics.servi
 import * as variables from '../../environments/environment';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { getFinancialsData, getProductsAnalyticsData } from './financial-analytics.selectors';
+import { getFinancialsData, getProductsAnalyticsData, getCountriesAnalyticsData } from './financial-analytics.selectors';
 import * as financialsActions from './financial-analytics.actions';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -27,26 +27,56 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
   products;
   countries;
   platforms;
-  selectedType;
-  selectedProducts;
-  selectedCountries;
-  selectedPlatforms;
+  selectedType = 'year';
+  selectedProducts = ['sport_classic', 'sport_live', 'casino', 'loto', 'virtual', 'mix'];
+  selectedCountries  = ['Serbia', 'Montenegro', 'Bosnia'];
+  selectedPlatforms = ['land', 'web'];
   financialsData = null;
   productsAnalyticsData = null;
+  countriesAnalyticsData = null;
   barChartOptionsYearFinChart: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
+    title: {
+      text: 'Financial analytics by time periods',
+      display: true,
+      fontSize: 17
+    },
     plugins: {
       datalabels: {
         formatter: () => {
           return null;
         },
       },
-    }
+    },
+    legend: { position: 'bottom' }
   };
   doughnutChartOptionsProductsAnalytics: any = {
+    responsive: true,
+    maintainAspectRatio: false,
+    title: {
+      text: 'Financial analytics by products',
+      display: true,
+      fontSize: 17
+    },
+    plugins: {
+      datalabels: {
+        formatter: () => {
+          return null;
+        },
+      },
+    },
+    legend: { position: 'bottom' }
+  };
+  doughnutChartOptionsCountriesAnalytics: any = {
+    responsive: true,
+    maintainAspectRatio: false,
+    title: {
+      text: 'Financial analytics by countries',
+      display: true,
+      fontSize: 17
+    },
     plugins: {
       datalabels: {
         formatter: () => {
@@ -64,16 +94,54 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
   barChartPluginsYearFinChart = [pluginDataLabels];
   barChartDataYearFinChart: ChartDataSets[];
   barChartColorsYearFinChart: Color[] = [
-    { backgroundColor: '#00565B' },
-    { backgroundColor: '#0a8a91' },
-    { backgroundColor: '#4f8b8e' },
-    { backgroundColor: '#86b5b7' },
+    {
+      backgroundColor: '#00565b',
+      borderColor: '#383736',
+      borderWidth: 1,
+    },
+    {
+      backgroundColor: '#ead7af',
+      borderColor: '#383736',
+      borderWidth: 1,
+    },
+    {
+      backgroundColor: '#aa6baa',
+      borderColor: '#383736',
+      borderWidth: 1,
+    },
+    {
+      backgroundColor: '#519296',
+      borderColor: '#383736',
+      borderWidth: 1,
+    },
+    {
+      backgroundColor: '#b79661',
+      borderColor: '#383736',
+      borderWidth: 1,
+    },
+    {
+      backgroundColor: '#add1d3',
+      borderColor: '#383736',
+      borderWidth: 1,
+    },
+    {
+      backgroundColor: '#597677',
+      borderColor: '#383736',
+      borderWidth: 1,
+    },
+    // { backgroundColor: '#FFA1B5' },
   ];
 
   // products analytics doughnut chart
   doughnutChartTypeProductAnalytics: ChartType = 'doughnut';
   doughnutChartLabelsProductAnalytics: Label[];
   doughnutChartDataProductAnalytics: MultiDataSet;
+  doughnutChartColorsProductAnalytics: Color[];
+
+  // countries analytics doughnut chart
+  doughnutChartTypeCountriesAnalytics: ChartType = 'doughnut';
+  doughnutChartLabelsCountriesAnalytics: Label[];
+  doughnutChartDataCountriesAnalytics: MultiDataSet;
 
 
   defaultColDefFinancials;
@@ -114,14 +182,15 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
     };
     this.subs.add(
       this.store.select(getFinancialsData).subscribe(data => {
-        this.financialsData = data;
         if (data){
+          this.financialsData = data;
           this.barChartLabelsYearFinChart = [];
           this.barChartDataYearFinChart = [
             { data: [], label: 'Amount' },
             { data: [], label: 'Payment' },
             { data: [], label: 'Tickets' },
           ];
+
           this.financialsData.filter(row => {
             this.barChartLabelsYearFinChart.push(row._id.date);
             this.barChartDataYearFinChart.filter(dataRow => {
@@ -138,6 +207,7 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.store.select(getProductsAnalyticsData).subscribe(data => {
         if (data){
+          // backgroundColor: ['#00565b', '#ead7af', '#aa6baa', '#519296']
           this.productsAnalyticsData = data;
           const amounts = [];
           const payments = [];
@@ -158,6 +228,29 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
         }
       })
     );
+    this.subs.add(
+      this.store.select(getCountriesAnalyticsData).subscribe(data => {
+        if (data){
+          this.countriesAnalyticsData = data;
+          const amounts = [];
+          const payments = [];
+          const tickets = [];
+          const columnNames = [];
+          data.filter(dataRow => {
+            columnNames.push(dataRow._id.country);
+            amounts.push(dataRow.amount);
+            payments.push(dataRow.payment);
+            tickets.push(dataRow.number_of_tickets);
+          });
+          this.doughnutChartLabelsCountriesAnalytics = columnNames;
+          this.doughnutChartDataCountriesAnalytics = [
+            amounts,
+            payments,
+            tickets,
+          ];
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {
@@ -171,15 +264,21 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
       product: this.selectedProducts,
       platform: this.selectedPlatforms
     };
-    this.financialAnalyticsService.getProductsAnalytics(this.selectedCountries).subscribe(results => {
-      this.store.dispatch({
-        type: financialsActions.Actions.SET_PRODUCTS_ANALYTICS_DATA,
-        data: results
-      });
-    });
     this.financialAnalyticsService.getFinancials(body).subscribe(results => {
       this.store.dispatch({
         type: financialsActions.Actions.SET_FINANCIALS_DATA,
+        data: results
+      });
+    });
+    this.financialAnalyticsService.getCountriesAnalytics(this.selectedProducts).subscribe(results => {
+      this.store.dispatch({
+        type: financialsActions.Actions.SET_COUNTRIES_ANALYTICS_DATA,
+        data: results
+      });
+    });
+    this.financialAnalyticsService.getProductsAnalytics(this.selectedCountries).subscribe(results => {
+      this.store.dispatch({
+        type: financialsActions.Actions.SET_PRODUCTS_ANALYTICS_DATA,
         data: results
       });
     });

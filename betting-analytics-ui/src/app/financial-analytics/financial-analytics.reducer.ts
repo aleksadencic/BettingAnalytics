@@ -13,4 +13,7 @@ export const financialAnalyticsReducer = createReducer(
     on(financialAnalyticsActions.setProductsAnalyticsData, (state, { data }) => {
         return ({ ...state, productsAnalyticsData: data });
     }),
+    on(financialAnalyticsActions.setCountriesAnalyticsData, (state, { data }) => {
+        return ({ ...state, countriesAnalyticsData: data });
+    }),
 );
