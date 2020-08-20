@@ -67,7 +67,7 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
         },
       },
     },
-    legend: { position: 'bottom' }
+    legend: { position: 'bottom', display: false }
   };
   doughnutChartOptionsCountriesAnalytics: any = {
     responsive: true,
@@ -84,7 +84,7 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
         },
       },
     },
-    legend: { position: 'bottom' }
+    legend: { position: 'bottom', display: false }
   };
 
   // date financial bar chart - main chart
@@ -142,6 +142,54 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
   doughnutChartTypeCountriesAnalytics: ChartType = 'doughnut';
   doughnutChartLabelsCountriesAnalytics: Label[];
   doughnutChartDataCountriesAnalytics: MultiDataSet;
+  doughnutChartColorsCountriesAnalytics = [
+      {
+        backgroundColor: '#00565b',
+        borderColor: '#ffffff',
+        borderWidth: 5,
+      },
+      {
+        backgroundColor: '#ead7af',
+        borderColor: '#ffffff',
+        borderWidth: 5,
+      },
+      {
+        backgroundColor: '#aa6baa',
+        borderColor: '#ffffff',
+        borderWidth: 5,
+      },
+      // {
+      //   backgroundColor: '#519296',
+      //   borderColor: '#ffffff',
+      //   borderWidth: 1,
+      // },
+      // {
+      //   backgroundColor: '#b79661',
+      //   borderColor: '#ffffff',
+      //   borderWidth: 1,
+      // },
+      // {
+      //   backgroundColor: '#add1d3',
+      //   borderColor: '#ffffff',
+      //   borderWidth: 1,
+      // },
+      // {
+      //   backgroundColor: '#597677',
+      //   borderColor: '#ffffff',
+      //   borderWidth: 1,
+      // },
+      // {
+      //   backgroundColor: '#e07b7b',
+      //   borderColor: '#ffffff',
+      //   borderWidth: 1,
+      // },
+      // {
+      //   backgroundColor: '#b28484',
+      //   borderColor: '#ffffff',
+      //   borderWidth: 1,
+      // },
+  ];
+
 
 
   defaultColDefFinancials;
@@ -207,7 +255,6 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.store.select(getProductsAnalyticsData).subscribe(data => {
         if (data){
-          // backgroundColor: ['#00565b', '#ead7af', '#aa6baa', '#519296']
           this.productsAnalyticsData = data;
           const amounts = [];
           const payments = [];

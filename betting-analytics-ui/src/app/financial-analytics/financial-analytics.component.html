@@ -52,14 +52,14 @@
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <div fxFlex>
                     <mat-card class='mat-card-medium productsDoghnutsChart' *ngIf='productsAnalyticsData' fxFlex>
-                        <canvas fxFlex baseChart [data]="doughnutChartDataProductAnalytics" [labels]="doughnutChartLabelsProductAnalytics" [options]='doughnutChartOptionsProductsAnalytics' [chartType]="doughnutChartTypeProductAnalytics">
+                        <canvas fxFlex baseChart [data]="doughnutChartDataProductAnalytics" [labels]="doughnutChartLabelsProductAnalytics" [options]='doughnutChartOptionsProductsAnalytics' [chartType]="doughnutChartTypeProductAnalytics" [colors]='doughnutChartColorsCountriesAnalytics'>
                         </canvas>
                     </mat-card>
                 </div>
                 <div fxFlex>
                     <mat-card class='mat-card-medium countriesDoghnutsChart' *ngIf='countriesAnalyticsData' fxFlex>
                         <div fxFlex>
-                            <canvas fxFlex baseChart [data]="doughnutChartDataCountriesAnalytics" [labels]="doughnutChartLabelsCountriesAnalytics" [options]='doughnutChartOptionsCountriesAnalytics' [chartType]="doughnutChartTypeCountriesAnalytics">
+                            <canvas fxFlex baseChart [data]="doughnutChartDataCountriesAnalytics" [labels]="doughnutChartLabelsCountriesAnalytics" [options]='doughnutChartOptionsCountriesAnalytics' [chartType]="doughnutChartTypeCountriesAnalytics" [colors]='doughnutChartColorsCountriesAnalytics'>
                             </canvas>
                         </div>
                     </mat-card>
