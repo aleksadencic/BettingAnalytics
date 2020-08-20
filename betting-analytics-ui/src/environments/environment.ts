@@ -69,9 +69,9 @@ export const presences = [
   {value: 'new', viewValue: 'New'},
 ];
 export const countries = [
-  {value: 'serbia', viewValue: 'Serbia'},
-  {value: 'montenegro', viewValue: 'Montenegro'},
-  {value: 'bosnia', viewValue: 'Bosnia & Herzegovina'}
+  {value: 'Serbia', viewValue: 'Serbia'},
+  {value: 'Montenegro', viewValue: 'Montenegro'},
+  {value: 'Bosnia', viewValue: 'Bosnia & Herzegovina'}
 ];
 
 /*

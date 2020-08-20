@@ -17,11 +17,12 @@ import { SegmentationModule } from './segmentation/segmentation.module';
 import { FinancialAnalyticsModule } from './financial-analytics/financial-analytics.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsModule } from 'ng2-charts';
 
 import { SegmentationComponent } from './segmentation/segmentation.component';
 import { FinancialAnalyticsComponent } from './financial-analytics/financial-analytics.component';
 
-export const metaReducers: MetaReducer<{}>[] = []; 
+export const metaReducers: MetaReducer<{}>[] = [];
 export const reducers: ActionReducerMap<{}> = {
   appContext: fromAppContext.reducer
 };
@@ -47,6 +48,7 @@ export const reducers: ActionReducerMap<{}> = {
     StoreDevtoolsModule.instrument(),
     NgrxRouterStoreModule,
     BrowserAnimationsModule,
+    ChartsModule,
     // NoopAnimationsModule,
     AppRoutingModule,
   ],

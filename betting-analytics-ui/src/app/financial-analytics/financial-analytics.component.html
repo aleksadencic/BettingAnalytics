@@ -1,50 +1,48 @@
-<mat-tab-group [selectedIndex]="selected.value">
-    <mat-tab label="Financial Portfolio">
+<mat-tab-group [selectedIndex]='selected.value'>
+    <mat-tab label='Financial Portfolio'>
         <mat-card>
-            <div fxLayout="row" fxLayoutAlign="space-around center">
-                <mat-form-field appearance="standard">
+            <div fxLayout='row' fxLayoutAlign='space-around center'>
+                <mat-form-field appearance='standard'>
                     <mat-label>Report Type</mat-label>
-                    <mat-select [(ngModel)]="selectedType">
-                        <mat-option *ngFor="let type of types" [value]="type.value">
+                    <mat-select [(ngModel)]='selectedType'>
+                        <mat-option *ngFor='let type of types' [value]='type.value'>
                             {{ type.viewValue }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance='standard'>
                     <mat-label>Country</mat-label>
-                    <mat-select multiple [(value)]="selectedCountries">
-                        <mat-option *ngFor="let country of countries" [value]="country.value">
+                    <mat-select multiple [(value)]='selectedCountries'>
+                        <mat-option *ngFor='let country of countries' [value]='country.value'>
                             {{ country.viewValue }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance='standard'>
                     <mat-label>Product</mat-label>
-                    <mat-select multiple [(value)]="selectedProducts">
-                        <mat-option *ngFor="let product of products" [value]="product.value">
+                    <mat-select multiple [(value)]='selectedProducts'>
+                        <mat-option *ngFor='let product of products' [value]='product.value'>
                             {{ product.viewValue }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Parameter</mat-label>
-                    <mat-select multiple [(value)]="selectedParameters">
-                        <mat-option *ngFor="let parameter of parameters" [value]="parameter.value">
-                            {{ parameter.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
+                <mat-form-field appearance='standard'>
                     <mat-label>Platform</mat-label>
-                    <mat-select multiple [(value)]="selectedPlatforms">
-                        <mat-option *ngFor="let platform of platforms" [value]="platform.value">
+                    <mat-select multiple [(value)]='selectedPlatforms'>
+                        <mat-option *ngFor='let platform of platforms' [value]='platform.value'>
                             {{ platform.viewValue }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <button mat-stroked-button class="launchButton" (click)="launch()">Launch</button>
+                <button mat-stroked-button class='launchButton' (click)='launch()'>Launch</button>
             </div>
         </mat-card>
-        <mat-card></mat-card>
+        <mat-card *ngIf='financialsData'>
+            <div>
+                <canvas baseChart height="500" [datasets]='barChartDataYearFinChart' [labels]='barChartLabelsYearFinChart' [options]='barChartOptionsYearFinChart' [plugins]='barChartPluginsYearFinChart' [legend]='barChartLegendYearFinChart' [chartType]='barChartTypeYearFinChart'
+                    [colors]='barChartColorsYearFinChart'>
+              </canvas>
+            </div>
+        </mat-card>
     </mat-tab>
 </mat-tab-group>

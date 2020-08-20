@@ -18,13 +18,7 @@ exports.find_financials_with_parameters = async(req, res, next) => {
     const reportType = req.body.reportType;
     const country = req.body.country;
     const product = req.body.product;
-    const parameters = req.body.parameter;
     const platform = req.body.platform;
-    let parameterString = '';
-    parameters.filter(parameter => {
-        parameterString += `'${parameter}',`;
-    });
-    parameterString = parameterString.slice(0, -1);
 
     await mongo_db.connectToMongoDB();
     // await Financial.find({
@@ -58,10 +52,10 @@ exports.find_financials_with_parameters = async(req, res, next) => {
                 _id: { date: { $substr: ['$date', from, to] } },
                 amount: { $sum: '$amount' },
                 payment: { $sum: '$payment' },
-                profit: { '$sum': '$amount', '$sum': '$payment' },
                 number_of_tickets: { $sum: '$number_of_tickets' },
-                pr: { $avg: '$pr' }
             }
+        }, {
+            $sort: { "_id.date": 1 }
         }],
         (err, financials) => {
             res.json(financials);

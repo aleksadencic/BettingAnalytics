@@ -15,9 +15,9 @@ export class FinancialAnalyticsService {
 
   constructor(private http: HttpClient) { }
 
-  getFinancials() {
-    const endpointUrl = `${this.baseUrlMongo}/financial-analytics`;
-    return this.http.get(endpointUrl).pipe(
+  getFinancials(body) {
+    const endpointUrl = `${this.baseUrlMongo}/financial-analytics/find`;
+    return this.http.post(endpointUrl, body).pipe(
       map(
         results => {
           return results;

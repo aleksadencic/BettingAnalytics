@@ -1,14 +1,22 @@
 import { createAction, props } from "@ngrx/store";
 
-export const SET_IS_DATA_LAUNCHING = 'Set Is Data Launching';
-export const SET_IS_DATA_LOADED = 'Set Is Data Loaded';
+export const Actions  =  { 
+    SET_IS_DATA_LAUNCHING: 'Set Is Data Launching', 
+    SET_IS_DATA_LOADED: 'Set Is Data Loaded', 
+    SET_FINANCIALS_DATA: 'Set Financials Data'
+};
 
 export const setIsDataLaunching = createAction(
-    SET_IS_DATA_LAUNCHING,
+    Actions.SET_IS_DATA_LAUNCHING,
     props<{ isDataLaunching }>()
 );
 
 export const setIsDataLoaded = createAction(
-    SET_IS_DATA_LOADED,
+    Actions.SET_IS_DATA_LOADED,
     props<{ isDataLoaded }>()
+);
+
+export const setFinancialsData = createAction(
+    Actions.SET_FINANCIALS_DATA,
+    props<{ data }>()
 );

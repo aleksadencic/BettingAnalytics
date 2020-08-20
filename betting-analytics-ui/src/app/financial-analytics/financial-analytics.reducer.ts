@@ -7,4 +7,7 @@ export const financialAnalyticsReducer = createReducer(
     on(financialAnalyticsActions.setIsDataLaunching, (state, { isDataLaunching }) => {
         return ({ ...state, isDataLaunching: isDataLaunching });
     }),
+    on(financialAnalyticsActions.setFinancialsData, (state, { data }) => {
+        return ({ ...state, data: data });
+    }),
 );
