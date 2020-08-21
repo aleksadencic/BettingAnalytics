@@ -1,6 +1,6 @@
 <mat-toolbar class="header-toolbar">
     <mat-toolbar-row>
-        <button mat-icon-button class="menu-button" style="margin: 0 0 0 0 ;">
+        <button mat-icon-button class="menu-button" style="margin: 0 0 0 0 ;" (click)="sidemenuButtonClick()">
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
         </button>
         <p>{{ title }}</p>

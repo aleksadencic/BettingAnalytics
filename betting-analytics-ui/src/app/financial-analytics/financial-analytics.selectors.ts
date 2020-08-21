@@ -34,3 +34,8 @@ export const getIsDataLaunching = createSelector(
     getFinancialsState,
     (financials: FinancialAnalyticsState) => financials.isDataLaunching,
 );
+
+export const getIsSidemenuOpen = createSelector(
+    getFinancialsState,
+    (financials: FinancialAnalyticsState) => financials.isSidemenuOpen,
+);

@@ -4,7 +4,15 @@ import { FinancialAnalyticsService } from '../services/financial-analytics.servi
 import * as variables from '../../environments/environment';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { getFinancialsData, getProductsAnalyticsData, getCountriesAnalyticsData, getIsDataLaunching, getSportBettingAnalyticsData, getPrAnalyticsData } from './financial-analytics.selectors';
+import {
+        getFinancialsData,
+        getProductsAnalyticsData,
+        getCountriesAnalyticsData,
+        getIsDataLaunching,
+        getSportBettingAnalyticsData,
+        getPrAnalyticsData,
+        getIsSidemenuOpen,
+      } from './financial-analytics.selectors';
 import * as financialsActions from './financial-analytics.actions';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -404,6 +412,15 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
             { data: prs, label: 'PR' },
           ];
           this.lineChartLabelsPrAnalytics = columnNames;
+        }
+      })
+    );
+    this.subs.add(
+      this.store.select(getIsSidemenuOpen).subscribe(isSidemenuOpen => {
+        if (this.financialsGridOptions && this.financialsGridOptions.api){
+          setTimeout(() => {
+            this.financialsGridOptions.api.sizeColumnsToFit();
+          }, 250);
         }
       })
     );

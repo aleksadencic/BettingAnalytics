@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import * as financialsActions from './financial-analytics/financial-analytics.actions';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +14,15 @@ export class AppComponent {
 
   events: string[] = [];
   opened: boolean;
+  isSidemenuOpen = false;
 
   sidenavItems = [];
 
   constructor(private store: Store<any>){
-    // this.subs.add(
-    //   this.store.dispatch({
-    //     type: segmentationActions.SET_IS_VALID,
-    //     isValid: true
-    //   })
-    // );
-
     this.sidenavItems = [
       {
         name: 'Financial Analytics',
-        icon: 'analytics',
+        icon: 'bar_chart',
         route: 'financial-analytics'
       },
       {
@@ -37,14 +32,22 @@ export class AppComponent {
       },
       {
         name: 'Ticket Analytics',
-        icon: 'assessment',
+        icon: 'insert_chart_outlined',
         route: ''
       },
       {
         name: 'User Preferences',
-        icon: 'account_box',
+        icon: 'perm_identity',
         route: ''
       },
   ];
+  }
+
+  sidemenuButtonClick(): void{
+    this.isSidemenuOpen = !this.isSidemenuOpen;
+    this.store.dispatch({
+      type: financialsActions.Actions.SET_IS_SIDEMENU_OPEN,
+      isSidemenuOpen: this.isSidemenuOpen
+    });
   }
 }

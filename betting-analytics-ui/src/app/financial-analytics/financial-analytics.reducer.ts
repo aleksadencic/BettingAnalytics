@@ -22,6 +22,9 @@ export const financialAnalyticsReducer = createReducer(
     on(financialAnalyticsActions.setPrAnalyticsData, (state, { data }) => {
         return ({ ...state, prAnalyticsData: data });
     }),
+    on(financialAnalyticsActions.setIsSidemenuOpen, (state, { isSidemenuOpen }) => {
+        return ({ ...state, isSidemenuOpen: isSidemenuOpen });
+    }),
     on(financialAnalyticsActions.setDefaultState, (state) => {
       return ({ ...state,
                 isDataLaunching: false,

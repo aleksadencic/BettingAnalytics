@@ -6,7 +6,8 @@ export interface FinancialAnalyticsState {
     countriesAnalyticsData: any;
     sportBettingAnalyticsData: any;
     prAnalyticsData: any;
-};
+    isSidemenuOpen: any;
+}
 
 export const initialFinancialAnalyticsState = {
     isDataLoaded: false,
@@ -16,4 +17,5 @@ export const initialFinancialAnalyticsState = {
     countriesAnalyticsData: null,
     sportBettingAnalyticsData: null,
     prAnalyticsData: null,
+    isSidemenuOpen: false,
 };

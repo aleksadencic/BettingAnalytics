@@ -9,6 +9,7 @@ export const Actions  =  {
     SET_SPORT_BETTING_ANALYTICS_DATA: 'Set Sport Betting Analytics Data',
     SET_PR_ANALYTICS_DATA: 'Set PR Analytics Data',
     SET_DEFAULT_STATE: 'Set Default State',
+    SET_IS_SIDEMENU_OPEN: 'Set Is Sidemenu Open',
 };
 
 export const setIsDataLaunching = createAction(
@@ -47,5 +48,10 @@ export const setPrAnalyticsData = createAction(
 );
 
 export const setDefaultState = createAction(
-    Actions.SET_DEFAULT_STATE
+  Actions.SET_DEFAULT_STATE
+  );
+
+export const setIsSidemenuOpen = createAction(
+    Actions.SET_IS_SIDEMENU_OPEN,
+    props<{ isSidemenuOpen }>()
 );
