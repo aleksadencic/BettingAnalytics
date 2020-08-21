@@ -22,4 +22,14 @@ export const financialAnalyticsReducer = createReducer(
     on(financialAnalyticsActions.setPrAnalyticsData, (state, { data }) => {
         return ({ ...state, prAnalyticsData: data });
     }),
+    on(financialAnalyticsActions.setDefaultState, (state) => {
+      return ({ ...state,
+                isDataLaunching: false,
+                data: null,
+                productsAnalyticsData: null,
+                countriesAnalyticsData: null,
+                sportBettingAnalyticsData: null,
+                prAnalyticsData: null,
+                });
+    }),
 );

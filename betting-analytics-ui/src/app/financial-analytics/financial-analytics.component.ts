@@ -4,7 +4,7 @@ import { FinancialAnalyticsService } from '../services/financial-analytics.servi
 import * as variables from '../../environments/environment';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { getFinancialsData, getProductsAnalyticsData, getCountriesAnalyticsData, getSportBettingAnalyticsData, getPrAnalyticsData } from './financial-analytics.selectors';
+import { getFinancialsData, getProductsAnalyticsData, getCountriesAnalyticsData, getIsDataLaunching, getSportBettingAnalyticsData, getPrAnalyticsData } from './financial-analytics.selectors';
 import * as financialsActions from './financial-analytics.actions';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -20,7 +20,7 @@ import { financialColumnsModel } from '../shared/financials-columns';
 })
 export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
   isDataLoaded = false;
-  isDataLoading = false;
+  isDataLaunching = false;
   subs = new Subscription();
   selected;
   types;
@@ -36,6 +36,7 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
   countriesAnalyticsData = null;
   sportBettingAnalyticsData = null;
   prAnalyticsData = null;
+  columnTypesFinancials;
   barChartOptionsYearFinChart: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -269,23 +270,33 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
     this.defaultColDefFinancials = {
       minWidth: 120,
       width: 120,
-      filter: 'agTextColumnFilter',
+      filter: 'agNumberColumnFilter',
       filterParams: { clearButton: true, debounceMs: 200},
       sortable: true,
       resizable: true,
     };
 
+    this.columnTypesFinancials = {
+      numberColumn: { filter: 'agNumberColumnFilter', cellStyle: { 'text-align': 'right' } },
+      stringColumn: { filter: 'agTextColumnFilter', cellStyle: { 'text-align': 'left' } },
+    };
     this.financialsGridOptions = {
       columnDefs: financialColumnsModel,
       rowData : [],
       defaultColDef: this.defaultColDefFinancials,
       floatingFilter: true,
       rowGroupPanelShow: 'always',
+      columnTypes: this.columnTypesFinancials,
       onGridReady: params => {
         this.financialsGridOptions = params;
         this.financialsGridOptions.api.sizeColumnsToFit();
       }
     };
+    this.subs.add(
+      this.store.select(getIsDataLaunching).subscribe(isDataLaunching => {
+        this.isDataLaunching = isDataLaunching;
+      })
+    );
     this.subs.add(
       this.store.select(getFinancialsData).subscribe(data => {
         if (data){
@@ -399,6 +410,9 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.store.dispatch({
+      type: financialsActions.Actions.SET_DEFAULT_STATE
+    });
     this.subs.unsubscribe();
   }
 
@@ -409,11 +423,21 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
       product: this.selectedProducts,
       platform: this.selectedPlatforms
     };
+    this.store.dispatch({
+      type: financialsActions.Actions.SET_IS_DATA_LAUNCHING,
+      isDataLaunching: true
+    });
     this.financialAnalyticsService.getFinancials(body).subscribe(results => {
-      this.store.dispatch({
-        type: financialsActions.Actions.SET_FINANCIALS_DATA,
-        data: results
-      });
+      setTimeout(() => {
+        this.store.dispatch({
+          type: financialsActions.Actions.SET_FINANCIALS_DATA,
+          data: results
+        });
+        this.store.dispatch({
+          type: financialsActions.Actions.SET_IS_DATA_LAUNCHING,
+          isDataLaunching: false
+        });
+      }, 2000);
     });
     this.financialAnalyticsService.getCountriesAnalytics(this.selectedProducts).subscribe(results => {
       this.store.dispatch({

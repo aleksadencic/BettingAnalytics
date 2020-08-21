@@ -42,14 +42,14 @@
                 <ag-grid-angular class="ag-theme-alpine financials-grid" [gridOptions]="financialsGridOptions">
                 </ag-grid-angular>
             </mat-card>
-            <mat-card class='mat-card-big' *ngIf='financialsData && selectedType && selectedType!=="day"' fxFlex>
+            <mat-card class='mat-card-big' *ngIf='!isDataLaunching && financialsData && selectedType && selectedType!=="day"' fxFlex>
                 <div>
                     <canvas baseChart class='financialsBarChart' [datasets]='barChartDataYearFinChart' [labels]='barChartLabelsYearFinChart' [options]='barChartOptionsYearFinChart' [plugins]='barChartPluginsYearFinChart' [legend]='barChartLegendYearFinChart' [chartType]='barChartTypeYearFinChart'
                         [colors]='barChartColorsYearFinChart'>
                       </canvas>
                 </div>
             </mat-card>
-            <div fxLayout="row" fxLayoutAlign="space-around center">
+            <div fxLayout="row" fxLayoutAlign="space-around center" *ngIf="!isDataLaunching">
                 <div fxFlex>
                     <mat-card class='mat-card-medium productsDoghnutsChart' *ngIf='productsAnalyticsData' fxFlex>
                         <canvas fxFlex baseChart [data]="doughnutChartDataProductAnalytics" [labels]="doughnutChartLabelsProductAnalytics" [options]='doughnutChartOptionsProductsAnalytics' [chartType]="doughnutChartTypeProductAnalytics" [colors]='doughnutChartColorsProductAnalytics'>
@@ -73,7 +73,7 @@
                     </mat-card>
                 </div>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-around center">
+            <div fxLayout="row" fxLayoutAlign="space-around center" *ngIf="!isDataLaunching">
                 <mat-card class='mat-card-legend' *ngIf='financialsData && selectedType && selectedType!=="day"' fxFlex>
                     <div>
                         <img src="../../assets/img/legend.PNG" alt="Legend" class="img-center">
@@ -90,15 +90,17 @@
                     </div>
                 </mat-card>
             </div>
-            <mat-card class='mat-card-pr' *ngIf='prAnalyticsData && selectedType && selectedType!=="day"' fxFlex>
+            <mat-card class='mat-card-pr' *ngIf='!isDataLaunching && prAnalyticsData && selectedType && selectedType!=="day"' fxFlex>
                 <div>
                     <canvas baseChart class='sportBettingChart' [datasets]="lineChartDataPrAnalytics" [labels]="lineChartLabelsPrAnalytics" [options]="lineChartOptionsPrAnalytics" [colors]="lineChartColorsPrAnalytics" [legend]="lineChartLegendPrAnalytics" [chartType]="lineChartTypePrAnalytics"
                         [plugins]="lineChartPluginsPrAnalytics">
                     </canvas>
                 </div>
             </mat-card>
-
-
         </div>
     </mat-tab>
 </mat-tab-group>
+<div *ngIf="isDataLaunching" class="screen-over" fxLayout="column" fxLayoutAlign="center center">
+    <mat-spinner mode="indeterminate" [diameter]="50" value="value" aria-label="Rating"></mat-spinner>
+    <h3 fxFlex="nogrow" fxLayoutAlign="center center">Launching Data</h3>
+</div>

@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { AgGridModule } from 'ag-grid-angular';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { SegmentationComponent } from './segmentation/segmentation.component';
 import { FinancialAnalyticsComponent } from './financial-analytics/financial-analytics.component';
@@ -49,6 +50,7 @@ export const reducers: ActionReducerMap<{}> = {
     StoreDevtoolsModule.instrument(),
     NgrxRouterStoreModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     ChartsModule,
     AgGridModule,
     // NoopAnimationsModule,

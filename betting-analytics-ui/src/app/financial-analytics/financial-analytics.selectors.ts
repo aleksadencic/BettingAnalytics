@@ -29,3 +29,8 @@ export const getPrAnalyticsData = createSelector(
     getFinancialsState,
     (financials: FinancialAnalyticsState) => financials.prAnalyticsData,
 );
+
+export const getIsDataLaunching = createSelector(
+    getFinancialsState,
+    (financials: FinancialAnalyticsState) => financials.isDataLaunching,
+);

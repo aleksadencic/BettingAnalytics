@@ -7,7 +7,8 @@ export const Actions  =  {
     SET_PRODUCTS_ANALYTICS_DATA: 'Set Products Analytics Data',
     SET_COUNTRIES_ANALYTICS_DATA: 'Set Countries Analytics Data',
     SET_SPORT_BETTING_ANALYTICS_DATA: 'Set Sport Betting Analytics Data',
-    SET_PR_ANALYTICS_DATA: 'Set pR Analytics Data',
+    SET_PR_ANALYTICS_DATA: 'Set PR Analytics Data',
+    SET_DEFAULT_STATE: 'Set Default State',
 };
 
 export const setIsDataLaunching = createAction(
@@ -43,4 +44,8 @@ export const setSportBettingAnalyticsData = createAction(
 export const setPrAnalyticsData = createAction(
     Actions.SET_PR_ANALYTICS_DATA,
     props<{ data }>()
+);
+
+export const setDefaultState = createAction(
+    Actions.SET_DEFAULT_STATE
 );

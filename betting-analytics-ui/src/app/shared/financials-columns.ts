@@ -4,7 +4,8 @@ export const financialColumnsModel = [
     valueGetter: params => {
       return params.data._id.date;
     },
-    cellStyle: {textAlign: 'left'}
+    type: 'stringColumn',
+    cellStyle: {textAlign: 'left/'}
 
   },
   {
@@ -19,20 +20,23 @@ export const financialColumnsModel = [
     valueGetter: params => {
       return (Math.round(params.data.payment * 100) / 100).toFixed(2);
     },
-    cellStyle: {textAlign: 'right'}
+    type: 'numberColumn'
+    // cellStyle: {textAlign: 'right'}
   },
   {
     headerName: 'Profit',
     valueGetter: params => {
      return (Math.round((params.data.payment - params.data.amount) * 100) / 100).toFixed(2);
     },
-    cellStyle: {textAlign: 'right'}
+    type: 'numberColumn'
+    // cellStyle: {textAlign: 'right'}
   },
   {
     headerName: 'Number of tickets',
     field: 'number_of_tickets',
     minWidth: 150,
-    cellStyle: {textAlign: 'right'}
+    type: 'numberColumn'
+    // cellStyle: {textAlign: 'right'}
   },
   {
     headerName: 'PR',
@@ -40,6 +44,7 @@ export const financialColumnsModel = [
       return (Math.round((params.data.payment / params.data.amount) * 100) / 100).toFixed(2);
     },
     minWidth: 100,
-    cellStyle: {textAlign: 'right'}
+    type: 'numberColumn'
+    // cellStyle: {textAlign: 'right'}
   },
 ];
