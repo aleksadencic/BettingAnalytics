@@ -18,8 +18,14 @@ router.post('/products', financials_controller.products_analytics);
 // POST request for data analytics by countries 
 router.post('/countries', financials_controller.countries_analytics);
 
-// POST request for inserting new financials
-// router.post('/insert', financials_controller.insert_financial);
+// POST request for data analytics by countries 
+router.post('/countries', financials_controller.countries_analytics);
+
+// POST request for sport betting by countries
+router.get('/sport-betting', financials_controller.sport_betting_analytics);
+
+// POST request for pr by time period
+router.post('/pr', financials_controller.pr_analytics);
 
 // PUT request for updating financials with id
 // router.put('/update/:id', financials_controller.update_financial);

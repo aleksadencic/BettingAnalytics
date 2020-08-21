@@ -52,7 +52,7 @@
             <div fxLayout="row" fxLayoutAlign="space-around center">
                 <div fxFlex>
                     <mat-card class='mat-card-medium productsDoghnutsChart' *ngIf='productsAnalyticsData' fxFlex>
-                        <canvas fxFlex baseChart [data]="doughnutChartDataProductAnalytics" [labels]="doughnutChartLabelsProductAnalytics" [options]='doughnutChartOptionsProductsAnalytics' [chartType]="doughnutChartTypeProductAnalytics" [colors]='doughnutChartColorsCountriesAnalytics'>
+                        <canvas fxFlex baseChart [data]="doughnutChartDataProductAnalytics" [labels]="doughnutChartLabelsProductAnalytics" [options]='doughnutChartOptionsProductsAnalytics' [chartType]="doughnutChartTypeProductAnalytics" [colors]='doughnutChartColorsProductAnalytics'>
                         </canvas>
                     </mat-card>
                 </div>
@@ -64,7 +64,41 @@
                         </div>
                     </mat-card>
                 </div>
+                <div fxFlex>
+                    <mat-card class='mat-card-medium sportBettingDoghnutsChart' *ngIf='sportBettingAnalyticsData' fxFlex>
+                        <div fxFlex>
+                            <canvas fxFlex baseChart [data]="doughnutChartDataSportBettingAnalytics" [labels]="doughnutChartLabelsSportBettingAnalytics" [options]='doughnutChartOptionsSportBettingAnalytics' [chartType]="doughnutChartTypeSportBettingAnalytics" [colors]='doughnutChartColorsSportBettingAnalytics'>
+                            </canvas>
+                        </div>
+                    </mat-card>
+                </div>
             </div>
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+                <mat-card class='mat-card-legend' *ngIf='financialsData && selectedType && selectedType!=="day"' fxFlex>
+                    <div>
+                        <img src="../../assets/img/legend.PNG" alt="Legend" class="img-center">
+                    </div>
+                </mat-card>
+                <mat-card class='mat-card-legend' *ngIf='financialsData && selectedType && selectedType!=="day"' fxFlex>
+                    <div>
+                        <img src="../../assets/img/legend.PNG" alt="Legend" class="img-center">
+                    </div>
+                </mat-card>
+                <mat-card class='mat-card-legend' *ngIf='financialsData && selectedType && selectedType!=="day"' fxFlex>
+                    <div>
+                        <img src="../../assets/img/legend.PNG" alt="Legend" class="img-center">
+                    </div>
+                </mat-card>
+            </div>
+            <mat-card class='mat-card-pr' *ngIf='prAnalyticsData && selectedType && selectedType!=="day"' fxFlex>
+                <div>
+                    <canvas baseChart class='sportBettingChart' [datasets]="lineChartDataPrAnalytics" [labels]="lineChartLabelsPrAnalytics" [options]="lineChartOptionsPrAnalytics" [colors]="lineChartColorsPrAnalytics" [legend]="lineChartLegendPrAnalytics" [chartType]="lineChartTypePrAnalytics"
+                        [plugins]="lineChartPluginsPrAnalytics">
+                    </canvas>
+                </div>
+            </mat-card>
+
+
         </div>
     </mat-tab>
 </mat-tab-group>

@@ -4,6 +4,8 @@ export interface FinancialAnalyticsState {
     data: any;
     productsAnalyticsData: any;
     countriesAnalyticsData: any;
+    sportBettingAnalyticsData: any;
+    prAnalyticsData: any;
 };
 
 export const initialFinancialAnalyticsState = {
@@ -12,4 +14,6 @@ export const initialFinancialAnalyticsState = {
     data: null,
     productsAnalyticsData: null,
     countriesAnalyticsData: null,
+    sportBettingAnalyticsData: null,
+    prAnalyticsData: null,
 };

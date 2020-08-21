@@ -16,4 +16,10 @@ export const financialAnalyticsReducer = createReducer(
     on(financialAnalyticsActions.setCountriesAnalyticsData, (state, { data }) => {
         return ({ ...state, countriesAnalyticsData: data });
     }),
+    on(financialAnalyticsActions.setSportBettingAnalyticsData, (state, { data }) => {
+        return ({ ...state, sportBettingAnalyticsData: data });
+    }),
+    on(financialAnalyticsActions.setPrAnalyticsData, (state, { data }) => {
+        return ({ ...state, prAnalyticsData: data });
+    }),
 );

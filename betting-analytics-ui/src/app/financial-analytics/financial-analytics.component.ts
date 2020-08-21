@@ -4,7 +4,7 @@ import { FinancialAnalyticsService } from '../services/financial-analytics.servi
 import * as variables from '../../environments/environment';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { getFinancialsData, getProductsAnalyticsData, getCountriesAnalyticsData } from './financial-analytics.selectors';
+import { getFinancialsData, getProductsAnalyticsData, getCountriesAnalyticsData, getSportBettingAnalyticsData, getPrAnalyticsData } from './financial-analytics.selectors';
 import * as financialsActions from './financial-analytics.actions';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -34,6 +34,8 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
   financialsData = null;
   productsAnalyticsData = null;
   countriesAnalyticsData = null;
+  sportBettingAnalyticsData = null;
+  prAnalyticsData = null;
   barChartOptionsYearFinChart: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -74,6 +76,23 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
     maintainAspectRatio: false,
     title: {
       text: 'Financial analytics by countries',
+      display: true,
+      fontSize: 17
+    },
+    plugins: {
+      datalabels: {
+        formatter: () => {
+          return null;
+        },
+      },
+    },
+    legend: { position: 'bottom', display: false }
+  };
+  doughnutChartOptionsSportBettingAnalytics: any = {
+    responsive: true,
+    maintainAspectRatio: false,
+    title: {
+      text: 'Financial sport betting analytics by countries',
       display: true,
       fontSize: 17
     },
@@ -136,13 +155,82 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
   doughnutChartTypeProductAnalytics: ChartType = 'doughnut';
   doughnutChartLabelsProductAnalytics: Label[];
   doughnutChartDataProductAnalytics: MultiDataSet;
-  doughnutChartColorsProductAnalytics: Color[];
+  doughnutChartColorsProductAnalytics: Color[] = [
+    {
+      backgroundColor: '#00565b',
+      borderColor: '#ffffff',
+      borderWidth: 5,
+    },
+    {
+      backgroundColor: '#ead7af',
+      borderColor: '#ffffff',
+      borderWidth: 5,
+    },
+    {
+      backgroundColor: '#aa6baa',
+      borderColor: '#ffffff',
+      borderWidth: 5,
+    },
+  ];
+
+  // pr analytics line chart data
+  lineChartDataPrAnalytics: ChartDataSets[];
+  lineChartLabelsPrAnalytics: Label[];
+  lineChartOptionsPrAnalytics = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: { xAxes: [{}], yAxes: [{}] },
+    title: {
+      text: 'PR analytics by time periods',
+      display: true,
+      fontSize: 17
+    },
+    plugins: {
+      datalabels: {
+        formatter: () => {
+          return null;
+        },
+      },
+    },
+    legend: { position: 'bottom' }
+  };
+  lineChartColorsPrAnalytics: Color[] = [
+    {
+      borderColor: '#00565B',
+      backgroundColor: '#9cbbbc',
+    },
+  ];
+  lineChartLegendPrAnalytics = true;
+  lineChartPluginsPrAnalytics = [];
+  lineChartTypePrAnalytics = 'line';
+
+  // sport betting analytics doughnut chart
+  doughnutChartTypeSportBettingAnalytics: ChartType = 'doughnut';
+  doughnutChartLabelsSportBettingAnalytics: Label[];
+  doughnutChartDataSportBettingAnalytics: MultiDataSet;
+  doughnutChartColorsSportBettingAnalytics: Color[] = [
+    {
+      backgroundColor: '#00565b',
+      borderColor: '#ffffff',
+      borderWidth: 5,
+    },
+    {
+      backgroundColor: '#ead7af',
+      borderColor: '#ffffff',
+      borderWidth: 5,
+    },
+    {
+      backgroundColor: '#aa6baa',
+      borderColor: '#ffffff',
+      borderWidth: 5,
+    },
+  ];
 
   // countries analytics doughnut chart
   doughnutChartTypeCountriesAnalytics: ChartType = 'doughnut';
   doughnutChartLabelsCountriesAnalytics: Label[];
   doughnutChartDataCountriesAnalytics: MultiDataSet;
-  doughnutChartColorsCountriesAnalytics = [
+  doughnutChartColorsCountriesAnalytics: Color[] = [
       {
         backgroundColor: '#00565b',
         borderColor: '#ffffff',
@@ -158,36 +246,6 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
         borderColor: '#ffffff',
         borderWidth: 5,
       },
-      // {
-      //   backgroundColor: '#519296',
-      //   borderColor: '#ffffff',
-      //   borderWidth: 1,
-      // },
-      // {
-      //   backgroundColor: '#b79661',
-      //   borderColor: '#ffffff',
-      //   borderWidth: 1,
-      // },
-      // {
-      //   backgroundColor: '#add1d3',
-      //   borderColor: '#ffffff',
-      //   borderWidth: 1,
-      // },
-      // {
-      //   backgroundColor: '#597677',
-      //   borderColor: '#ffffff',
-      //   borderWidth: 1,
-      // },
-      // {
-      //   backgroundColor: '#e07b7b',
-      //   borderColor: '#ffffff',
-      //   borderWidth: 1,
-      // },
-      // {
-      //   backgroundColor: '#b28484',
-      //   borderColor: '#ffffff',
-      //   borderWidth: 1,
-      // },
   ];
 
 
@@ -298,6 +356,46 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
         }
       })
     );
+    this.subs.add(
+      this.store.select(getSportBettingAnalyticsData).subscribe(data => {
+        if (data){
+          this.sportBettingAnalyticsData = data;
+          const amounts = [];
+          const payments = [];
+          const tickets = [];
+          const columnNames = [];
+          data.filter(dataRow => {
+            columnNames.push(dataRow._id.country);
+            amounts.push(dataRow.amount);
+            payments.push(dataRow.payment);
+            tickets.push(dataRow.number_of_tickets);
+          });
+          this.doughnutChartLabelsSportBettingAnalytics = columnNames;
+          this.doughnutChartDataSportBettingAnalytics = [
+            amounts,
+            payments,
+            tickets,
+          ];
+        }
+      })
+    );
+    this.subs.add(
+      this.store.select(getPrAnalyticsData).subscribe(data => {
+        if (data){
+          this.prAnalyticsData = data;
+          const columnNames = [];
+          const prs = [];
+          data.filter(dataRow => {
+            columnNames.push(dataRow._id.date);
+            prs.push((Math.round(dataRow.pr * 100) / 100).toFixed(2));
+          });
+          this.lineChartDataPrAnalytics = [
+            { data: prs, label: 'PR' },
+          ];
+          this.lineChartLabelsPrAnalytics = columnNames;
+        }
+      })
+    );
   }
 
   ngOnDestroy(): void {
@@ -326,6 +424,18 @@ export class FinancialAnalyticsComponent implements OnInit, OnDestroy {
     this.financialAnalyticsService.getProductsAnalytics(this.selectedCountries).subscribe(results => {
       this.store.dispatch({
         type: financialsActions.Actions.SET_PRODUCTS_ANALYTICS_DATA,
+        data: results
+      });
+    });
+    this.financialAnalyticsService.getSportBettingAnalytics().subscribe(results => {
+      this.store.dispatch({
+        type: financialsActions.Actions.SET_SPORT_BETTING_ANALYTICS_DATA,
+        data: results
+      });
+    });
+    this.financialAnalyticsService.getPrAnalytics(this.selectedType).subscribe(results => {
+      this.store.dispatch({
+        type: financialsActions.Actions.SET_PR_ANALYTICS_DATA,
         data: results
       });
     });

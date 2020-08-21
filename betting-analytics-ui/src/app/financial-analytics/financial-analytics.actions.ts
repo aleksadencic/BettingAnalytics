@@ -6,6 +6,8 @@ export const Actions  =  {
     SET_FINANCIALS_DATA: 'Set Financials Data',
     SET_PRODUCTS_ANALYTICS_DATA: 'Set Products Analytics Data',
     SET_COUNTRIES_ANALYTICS_DATA: 'Set Countries Analytics Data',
+    SET_SPORT_BETTING_ANALYTICS_DATA: 'Set Sport Betting Analytics Data',
+    SET_PR_ANALYTICS_DATA: 'Set pR Analytics Data',
 };
 
 export const setIsDataLaunching = createAction(
@@ -30,5 +32,15 @@ export const setProductsAnalyticsData = createAction(
 
 export const setCountriesAnalyticsData = createAction(
     Actions.SET_COUNTRIES_ANALYTICS_DATA,
+    props<{ data }>()
+);
+
+export const setSportBettingAnalyticsData = createAction(
+    Actions.SET_SPORT_BETTING_ANALYTICS_DATA,
+    props<{ data }>()
+);
+
+export const setPrAnalyticsData = createAction(
+    Actions.SET_PR_ANALYTICS_DATA,
     props<{ data }>()
 );

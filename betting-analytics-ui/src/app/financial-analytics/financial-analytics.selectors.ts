@@ -19,3 +19,13 @@ export const getCountriesAnalyticsData = createSelector(
     getFinancialsState,
     (financials: FinancialAnalyticsState) => financials.countriesAnalyticsData,
 );
+
+export const getSportBettingAnalyticsData = createSelector(
+    getFinancialsState,
+    (financials: FinancialAnalyticsState) => financials.sportBettingAnalyticsData,
+);
+
+export const getPrAnalyticsData = createSelector(
+    getFinancialsState,
+    (financials: FinancialAnalyticsState) => financials.prAnalyticsData,
+);

@@ -51,5 +51,29 @@ export class FinancialAnalyticsService {
     );
   }
 
+  getSportBettingAnalytics(){
+    const endpointUrl = `${this.baseUrlMongo}/financial-analytics/sport-betting`;
+    return this.http.get(endpointUrl).pipe(
+      map(
+        results => {
+          return results;
+        },
+        error => console.log(error),
+      ),
+    );
+  }
+
+  getPrAnalytics(selectedType){
+    const endpointUrl = `${this.baseUrlMongo}/financial-analytics/pr`;
+    return this.http.post(endpointUrl, { type: selectedType }).pipe(
+      map(
+        results => {
+          return results;
+        },
+        error => console.log(error),
+      ),
+    );
+  }
+
 
 }

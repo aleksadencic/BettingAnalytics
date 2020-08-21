@@ -54,6 +54,54 @@ exports.countries_analytics = async(req, res, next) => {
         });
 }
 
+// Sport betting analytics
+exports.sport_betting_analytics = async(req, res, next) => {
+    await mongo_db.connectToMongoDB();
+    const products = ['sport_classic', 'sport_live'];
+    await Financial.aggregate([{
+            $match: {
+                product: { $in: products },
+            }
+        }, {
+            $group: {
+                _id: { country: '$country' },
+                amount: { $sum: '$amount' },
+                payment: { $sum: '$payment' },
+                number_of_tickets: { $sum: '$number_of_tickets' },
+            }
+        }],
+        (err, financials) => {
+            res.json(financials);
+        });
+}
+
+// PR analytics
+exports.pr_analytics = async(req, res, next) => {
+    await mongo_db.connectToMongoDB();
+    const reportType = req.body.type;
+    let from = reportType === 'year' ? 0 :
+        reportType === 'month' ? 0 :
+        reportType === 'day' ? 0 :
+        null;
+    let to = reportType === 'year' ? 4 :
+        reportType === 'month' ? 7 :
+        reportType === 'day' ? 10 :
+        null;
+    await Financial.aggregate([{
+            $match: {}
+        }, {
+            $group: {
+                _id: { date: { $substr: ['$date', from, to] } },
+                pr: { $avg: '$pr' },
+            }
+        }, {
+            $sort: { "_id.date": 1 }
+        }],
+        (err, financials) => {
+            res.json(financials);
+        });
+}
+
 // Find financials with parameters
 exports.find_financials_with_parameters = async(req, res, next) => {
     const reportType = req.body.reportType;
