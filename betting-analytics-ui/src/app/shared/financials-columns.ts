@@ -5,8 +5,7 @@ export const financialColumnsModel = [
       return params.data._id.date;
     },
     type: 'stringColumn',
-    cellStyle: {textAlign: 'left/'}
-
+    cellStyle: {textAlign: 'left'}
   },
   {
     headerName: 'Amount',
@@ -21,7 +20,6 @@ export const financialColumnsModel = [
       return (Math.round(params.data.payment * 100) / 100).toFixed(2);
     },
     type: 'numberColumn'
-    // cellStyle: {textAlign: 'right'}
   },
   {
     headerName: 'Profit',
@@ -29,14 +27,12 @@ export const financialColumnsModel = [
      return (Math.round((params.data.payment - params.data.amount) * 100) / 100).toFixed(2);
     },
     type: 'numberColumn'
-    // cellStyle: {textAlign: 'right'}
   },
   {
     headerName: 'Number of tickets',
     field: 'number_of_tickets',
     minWidth: 150,
     type: 'numberColumn'
-    // cellStyle: {textAlign: 'right'}
   },
   {
     headerName: 'PR',
@@ -45,6 +41,5 @@ export const financialColumnsModel = [
     },
     minWidth: 100,
     type: 'numberColumn'
-    // cellStyle: {textAlign: 'right'}
   },
 ];

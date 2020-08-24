@@ -35,7 +35,7 @@
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <button mat-stroked-button class='launchButton' (click)='launch()'>Launch</button>
+                    <button mat-stroked-button class='launchButton' (click)='launch()'>Calculate</button>
                 </div>
             </mat-card>
             <mat-card class='mat-card-big' fxFlex>
@@ -102,5 +102,5 @@
 </mat-tab-group>
 <div *ngIf="isDataLaunching" class="screen-over" fxLayout="column" fxLayoutAlign="center center">
     <mat-spinner mode="indeterminate" [diameter]="50" value="value" aria-label="Rating"></mat-spinner>
-    <h3 fxFlex="nogrow" fxLayoutAlign="center center">Launching Data</h3>
+    <h3 fxFlex="nogrow" fxLayoutAlign="center center">Calculating...</h3>
 </div>

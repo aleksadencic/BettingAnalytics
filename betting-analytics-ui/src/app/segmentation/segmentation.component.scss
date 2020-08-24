@@ -54,8 +54,54 @@
 
 .segmentation-grid {
     width: 100;
-    height: 440px;
-    margin: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    height: 380px;
+    // margin: 15px;
+}
+
+.screen-over {
+    position: absolute;
+    top: 47px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000 !important;
+    background-color: transparentize($color: #ffffff, $amount: 0.2);
+    font-family: Arial, Helvetica, sans-serif;
+    // font-size: 40px;
+    font-weight: bold;
+}
+
+.downloadButton {
+    // background-color: #00565B;
+    color: #00565B;
+    height: 40px !important;
+    width: 20px !important;
+    margin-right: 3px;
+}
+
+.top-button {
+    // background-color: #00565B;
+    color: #00565B;
+    height: 40px !important;
+    width: 20px !important;
+    margin-right: 15px;
+}
+
+.caption {
+    color: #00565B;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.header {
+    margin-top: 1px;
+}
+
+.averagePr {
+    color: #00565B;
+    margin-right: 20px;
+}
+
+.button:hover {
+    background-color: #00565B !important;
 }

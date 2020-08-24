@@ -38,6 +38,7 @@
         "chartjs-plugin-datalabels": "^0.7.0",
         "ng2-charts": "^2.3.3",
         "npm-install-peers": "^1.2.1",
+        "oboe": "^2.1.5",
         "rxjs": "~6.5.5",
         "rxjs-compat": "^6.6.2",
         "tslib": "^2.0.0",

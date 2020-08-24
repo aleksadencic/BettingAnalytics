@@ -5,10 +5,10 @@
 @import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss"
 
 .ag-theme-alpine
-    @include ag-theme-alpine()
+  @include ag-theme-alpine()
 
 .ag-row-hover
-    background-color: #f4ecdc !important
+  background-color: #f4ecdc !important
 
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled)
   color: #00565b
@@ -27,7 +27,10 @@
 
 .mat-progress-spinner circle,
 .mat-spinner circle
-    stroke: #00565b
+  stroke: #00565b
 
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar
   background-color: #00565b
+
+.ag-cell.ag-cell-not-inline-editing.ag-cell-auto-height.ag-cell-value.ag-cell-focus
+  border-color: #00565b
