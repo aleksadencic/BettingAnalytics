@@ -5,7 +5,17 @@ const mongoose = require('mongoose');
 // Find all members
 exports.find_members = async(req, res, next) => {
     await mongo_db.connectToMongoDB();
-    await Member.find({ id: { $ne: 0 } })
+    await Member.find({
+            gender: { $in: req.body.genders },
+            budget: { $in: req.body.budgets },
+            platform: { $in: req.body.platforms },
+            frequency: { $in: req.body.frequencies },
+            age_group: { $in: req.body.ageGroups },
+            platform: { $in: req.body.platforms },
+            category: { $in: req.body.categories },
+            presence: { $in: req.body.presences },
+            country: { $in: req.body.countries }
+        })
         .exec(async(err, members) => {
             if (err) { return next(err); }
             mongo_db.disconnectFromMongoDB();

@@ -2,10 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SegmentationService } from '../services/segmentation.service';
 import * as variables from '../../environments/environment'
-// import * as am4core from "@amcharts/amcharts4/core";
-// import * as am4charts from "@amcharts/amcharts4/charts";
-// import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-// am4core.useTheme(am4themes_animated);
+import { GridOptions } from 'ag-grid';
+import { segmentationColumnsModel } from '../shared/segmentation-columns';
 
 @Component({
   selector: 'app-segmentation',
@@ -13,6 +11,7 @@ import * as variables from '../../environments/environment'
   styleUrls: ['./segmentation.component.scss']
 })
 export class SegmentationComponent implements OnInit {
+  filtersTitle = 'Members Segmentation';
   isDataLoaded = false;
   isDataLoading = false;
   selected;
@@ -25,14 +24,19 @@ export class SegmentationComponent implements OnInit {
   categories;
   presences;
   countries;
-  selectedGenders;
-  selectedBudgets;
-  selectedPlatforms;
-  selectedFrequencies;
-  selectedAgeGroups;
-  selectedCategories;
-  selectedPresences;
-  selectedCountries;
+  selectedGenders = ['male', 'female'];
+  selectedBudgets = ['10-', '(10-30)', '(30-100)', '100+'];
+  selectedPlatforms = ['land', 'web'];
+  selectedFrequencies = ['advanced', 'regular', 'average', 'periodical', 'passive', 'sleepy', 'inactive'];
+  selectedAgeGroups = ['(18-25)', '(26-34)', '(35-40)', '(41-50)', '50+'];
+  selectedCategories = ['sport_classic', 'sport_live', 'casino', 'loto', 'virtual', 'mix'];
+  selectedPresences = ['old', 'new'];
+  selectedCountries = ['Serbia', 'Montenegro', 'Bosnia'];
+  columnTypesSegmentation;
+
+  defaultColDefSegmentation;
+  // grid
+  segmentationGridOptions: GridOptions;
 
   constructor(private zone: NgZone,
               private segmentationService: SegmentationService) {
@@ -48,21 +52,59 @@ export class SegmentationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.defaultColDefSegmentation = {
+      minWidth: 120,
+      width: 120,
+      filter: 'agNumberColumnFilter',
+      filterParams: { debounceMs: 200},
+      sortable: true,
+      resizable: true,
+    };
+
+    this.columnTypesSegmentation = {
+      numberColumn: { filter: 'agNumberColumnFilter', cellStyle: { 'text-align': 'right' } },
+      stringColumn: { filter: 'agTextColumnFilter', cellStyle: { 'text-align': 'left' } },
+    };
+    this.segmentationGridOptions = {
+      columnDefs: segmentationColumnsModel,
+      rowData : [],
+      defaultColDef: this.defaultColDefSegmentation,
+      rowGroupPanelShow: 'always',
+      columnTypes: this.columnTypesSegmentation,
+      floatingFilter: true,
+      onGridReady: params => {
+        this.segmentationGridOptions = params;
+        this.segmentationGridOptions.api.sizeColumnsToFit();
+      }
+    };
   }
 
   launch(): void{
-    console.log(
-      this.selectedGenders,
-      this.selectedBudgets,
-      this.selectedPlatforms,
-      this.selectedFrequencies,
-      this.selectedAgeGroups,
-      this.selectedCategories,
-      this.selectedPresences,
-      this.selectedCountries);
-    this.segmentationService.getSegmentationData().subscribe(results => {
-      console.log(results);
+    const body = {
+      genders: this.selectedGenders,
+      budgets: this.selectedBudgets,
+      platforms: this.selectedPlatforms,
+      frequencies: this.selectedFrequencies,
+      ageGroups: this.selectedAgeGroups,
+      categories: this.selectedCategories,
+      presences: this.selectedPresences,
+      countries: this.selectedCountries
+    };
+    this.segmentationService.getSegmentationData(body).subscribe(results => {
+      // console.log(results);
     });
+  }
+
+  reset(): void{
+    this.selectedGenders = ['male', 'female'];
+    this.selectedBudgets = ['10-', '(10-30)', '(30-100)', '100+'];
+    this.selectedPlatforms = ['land', 'web'];
+    this.selectedFrequencies = ['advanced', 'regular', 'average', 'periodical', 'passive', 'sleepy', 'inactive'];
+    this.selectedAgeGroups = ['(18-25)', '(26-34)', '(35-40)', '(41-50)', '50+'];
+    this.selectedCategories = ['sport_classic', 'sport_live', 'casino', 'loto', 'virtual', 'mix'];
+    this.selectedPresences = ['old', 'new'];
+    this.selectedCountries = ['Serbia', 'Montenegro', 'Bosnia'];
   }
 
   ngAfterViewInit() {

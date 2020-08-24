@@ -1,5 +1,5 @@
 // This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// `ng build ,,prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
@@ -30,10 +30,9 @@ export const genders = [
   {value: 'female', viewValue: 'Female'},
 ];
 export const budgets = [
-  {value: '(0-5]', viewValue: '0-5'},
-  {value: '(5-10]', viewValue: '5-10'},
-  {value: '(10-30]', viewValue: '10-30'},
-  {value: '(30-100]', viewValue: '30-100'},
+  {value: '10-', viewValue: '(0,10]'},
+  {value: '(10-30)', viewValue: '(10,30]'},
+  {value: '(30-100)', viewValue: '(30,100]'},
   {value: '100+', viewValue: '100+'},
 ];
 export const platforms = [
@@ -50,10 +49,10 @@ export const frequencies = [
   {value: 'inactive', viewValue: 'Inactive'},
 ];
 export const age_groups = [
-  {value: '(18-25]', viewValue: '18-25'},
-  {value: '(26-34]', viewValue: '26-34'},
-  {value: '(35-40]', viewValue: '35-40'},
-  {value: '(41-50]', viewValue: '41-50'},
+  {value: '(18-25)', viewValue: '(18,25]'},
+  {value: '(26-34)', viewValue: '(26,34]'},
+  {value: '(35-40)', viewValue: '(35,40]'},
+  {value: '(41-50)', viewValue: '(41,50]'},
   {value: '50+', viewValue: '50+'}
 ];
 export const categories = [
@@ -81,4 +80,4 @@ export const countries = [
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/dist/zone,error';  // Included with Angular CLI.

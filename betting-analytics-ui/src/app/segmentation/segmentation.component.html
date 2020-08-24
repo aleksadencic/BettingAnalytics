@@ -1,79 +1,94 @@
 <mat-tab-group [selectedIndex]="selected.value">
     <mat-tab label="Filters">
-        <mat-card>
-            <div fxLayout="column" fxLayoutAlign="space-around center">
-                <mat-form-field appearance="standard">
-                    <mat-label>Gender</mat-label>
-                    <mat-select multiple [(value)]="selectedGenders">
-                        <mat-option *ngFor="let gender of genders" [value]="gender.value">
-                            {{ gender.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Budget</mat-label>
-                    <mat-select multiple [(value)]="selectedBudgets">
-                        <mat-option *ngFor="let budget of budgets" [value]="budget.value">
-                            {{ budget.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Platform</mat-label>
-                    <mat-select multiple [(value)]="selectedPlatforms">
-                        <mat-option *ngFor="let platform of platforms" [value]="platform.value">
-                            {{ platform.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Frequency</mat-label>
-                    <mat-select multiple [(value)]="selectedFrequencies">
-                        <mat-option *ngFor="let frequency of frequencies" [value]="frequency.value">
-                            {{ frequency.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Age group</mat-label>
-                    <mat-select multiple [(value)]="selectedAgeGroups">
-                        <mat-option *ngFor="let age_group of age_groups" [value]="age_group.value">
-                            {{ age_group.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Category</mat-label>
-                    <mat-select multiple [(value)]="selectedCategories">
-                        <mat-option *ngFor="let category of categories" [value]="category.value">
-                            {{ category.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Member presence</mat-label>
-                    <mat-select multiple [(value)]="selectedPresences">
-                        <mat-option *ngFor="let presence of presences" [value]="presence.value">
-                            {{ presence.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="standard">
-                    <mat-label>Country</mat-label>
-                    <mat-select multiple [(value)]="selectedCountries">
-                        <mat-option *ngFor="let country of countries" [value]="country.value">
-                            {{ country.viewValue }}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button mat-stroked-button (click)="launch()">Launch</button>
-
+        <mat-card class="matCardFilters">
+            <div fxLayout="column">
+                <h2 fxLayout="row" fxLayoutAlign="center center" class="title">
+                    {{ filtersTitle }}
+                </h2>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Gender</mat-label>
+                        <mat-select multiple [(value)]="selectedGenders">
+                            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                {{ gender.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Budget</mat-label>
+                        <mat-select multiple [(value)]="selectedBudgets">
+                            <mat-option *ngFor="let budget of budgets" [value]="budget.value">
+                                {{ budget.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Platform</mat-label>
+                        <mat-select multiple [(value)]="selectedPlatforms">
+                            <mat-option *ngFor="let platform of platforms" [value]="platform.value">
+                                {{ platform.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Frequency</mat-label>
+                        <mat-select multiple [(value)]="selectedFrequencies">
+                            <mat-option *ngFor="let frequency of frequencies" [value]="frequency.value">
+                                {{ frequency.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Age group</mat-label>
+                        <mat-select multiple [(value)]="selectedAgeGroups">
+                            <mat-option *ngFor="let age_group of age_groups" [value]="age_group.value">
+                                {{ age_group.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Category</mat-label>
+                        <mat-select multiple [(value)]="selectedCategories">
+                            <mat-option *ngFor="let category of categories" [value]="category.value">
+                                {{ category.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <mat-form-field appearance="standard">
+                        <mat-label>Member presence</mat-label>
+                        <mat-select multiple [(value)]="selectedPresences">
+                            <mat-option *ngFor="let presence of presences" [value]="presence.value">
+                                {{ presence.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Country</mat-label>
+                        <mat-select multiple [(value)]="selectedCountries">
+                            <mat-option *ngFor="let country of countries" [value]="country.value">
+                                {{ country.viewValue }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-around center" class="buttons">
+                    <button style="visibility: hidden;">emptz button</button>
+                    <button mat-stroked-button class='launchButton' (click)='launch()'>Launch</button>
+                    <button mat-icon-button class='resetButton' (click)='reset()'>
+                      <mat-icon>refresh</mat-icon>
+                  </button>
+                </div>
             </div>
         </mat-card>
     </mat-tab>
     <mat-tab label="Results">
-        <mat-card>
-            Results
+        <mat-card class="matCardResults">
+            <ag-grid-angular class="ag-theme-alpine segmentation-grid" [gridOptions]="segmentationGridOptions">
+            </ag-grid-angular>
             <div id="financialChart" style="width: 100%; height: 500px"></div>
         </mat-card>
     </mat-tab>

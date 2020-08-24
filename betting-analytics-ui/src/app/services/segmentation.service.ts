@@ -15,11 +15,12 @@ export class SegmentationService {
 
   constructor(private http: HttpClient) { }
 
-  getSegmentationData() {
+  getSegmentationData(body): any {
     const endpointUrl = `${this.baseUrlMongo}/segmentation`;
-    return this.http.get(endpointUrl).pipe(
+    return this.http.post(endpointUrl, body).pipe(
       map(
         results => {
+          console.log(results);
           return results;
         },
         error => console.log(error),

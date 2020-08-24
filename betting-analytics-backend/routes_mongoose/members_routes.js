@@ -7,7 +7,7 @@ const members_controller = require('../controllers_mongoose/members_controller')
 /* MEMBERS ROUTES */
 
 // GET request for list of all members
-router.get('/', members_controller.find_members);
+router.post('/', members_controller.find_members);
 
 // POST request for inserting new member
 router.post('/insert', members_controller.insert_member);
