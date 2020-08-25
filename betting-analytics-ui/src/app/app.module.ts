@@ -21,6 +21,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AgGridModule } from 'ag-grid-angular';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion'
 import { SegmentationInfoDialogComponent } from './shared/dialogs/segmentation-info-dialog/segmentation-info-dialog.component';
 
 export const metaReducers: MetaReducer<{}>[] = [];
@@ -52,6 +53,7 @@ export const reducers: ActionReducerMap<{}> = {
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatExpansionModule,
     ChartsModule,
     AgGridModule,
     // NoopAnimationsModule,

@@ -1,3 +1,26 @@
 .button {
     background-color: #00565B;
 }
+
+.h3 {
+    font-weight: bold;
+}
+
+.mat-expansion-panel {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.example-headers-align .mat-form-field+.mat-form-field {
+    margin-left: 8px;
+}

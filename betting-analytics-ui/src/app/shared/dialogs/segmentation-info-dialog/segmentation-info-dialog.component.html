@@ -1,23 +1,168 @@
-<h2 mat-dialog-title>Segmentation Info</h2>
+<h2 mat-dialog-title>Parameters Explanation</h2>
 <mat-dialog-content class="mat-typography">
-    <h3>Budget</h3>
-    <p>explanation</p>
-
-    <h3>Platform</h3>
-    <p>explanation</p>
-
-    <h3>Age group</h3>
-    <p>explanation</p>
-
-    <h3>Category</h3>
-    <p>explanation</p>
-
-    <h3>Presence</h3>
-    <p>explanation</p>
-
-    <h3>PR</h3>
-    <p>explanation</p>
-
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Budget
+                </mat-panel-title>
+                <mat-panel-description>
+                    Money in euros that member spends on a daily basis
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ol>
+                <li>
+                    <p>(0,10]</p>
+                </li>
+                <li>
+                    <p>(10,30]</p>
+                </li>
+                <li>
+                    <p>(30,100]</p>
+                </li>
+                <li>
+                    <p>100+</p>
+                </li>
+            </ol>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Platform
+                </mat-panel-title>
+                <mat-panel-description>
+                    Platform which member use the most
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ol>
+                <li>
+                    <p>LAND - for tickets that are members pay at the payment point</p>
+                </li>
+                <li>
+                    <p>WEB - for tickets that are members pay on the web</p>
+                </li>
+            </ol>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Frequency
+                </mat-panel-title>
+                <mat-panel-description>
+                    Incidence frequency of users on a weekly base
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ol>
+                <li>
+                    <p>ADVANCED</p>
+                </li>
+                <li>
+                    <p>REGULAR</p>
+                </li>
+                <li>
+                    <p>AVERAGE</p>
+                </li>
+                <li>
+                    <p>PERIODICAL</p>
+                </li>
+                <li>
+                    <p>PASSIVE</p>
+                </li>
+                <li>
+                    <p>SLEEPY</p>
+                </li>
+                <li>
+                    <p>INACTIVE</p>
+                </li>
+            </ol>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Age group
+                </mat-panel-title>
+                <mat-panel-description>
+                    Number of years of user
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ol>
+                <li>
+                    <p>(18,25]</p>
+                </li>
+                <li>
+                    <p>(26,34]</p>
+                </li>
+                <li>
+                    <p>(35,40]</p>
+                </li>
+                <li>
+                    <p>(41,50]</p>
+                </li>
+                <li>
+                    <p>50+</p>
+                </li>
+            </ol>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Category
+                </mat-panel-title>
+                <mat-panel-description>
+                    Product category that the user plays the most
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ol>
+                <li>
+                    <p>SPORT CLASSIC - regular sport betting before match</p>
+                </li>
+                <li>
+                    <p>SPORT LIVE - sport betting during the match</p>
+                </li>
+                <li>
+                    <p>CASINO - casino games</p>
+                </li>
+                <li>
+                    <p>LOTO - loto games and games of chance</p>
+                </li>
+                <li>
+                    <p>VIRTUAL - virtual games</p>
+                </li>
+                <li>
+                    <p>MIX - combination of two or more categories of the above</p>
+                </li>
+            </ol>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Presence
+                </mat-panel-title>
+                <mat-panel-description>
+                    Presence of users in the system
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <ol>
+                <li>
+                    <p>OLD - if player is new to the system, ie. enrolled in the previous 3 weeks</p>
+                </li>
+                <li>
+                    <p>NEW - otherwise</p>
+                </li>
+            </ol>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    PR
+                </mat-panel-title>
+                <mat-panel-description>
+                    Performance Ratio
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Ratio of the ticket payment and amount (ideal value is from 0.85 to 0.95)</p>
+        </mat-expansion-panel>
+    </mat-accordion>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
