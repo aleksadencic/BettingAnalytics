@@ -19,7 +19,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { Label, Color, MultiDataSet } from 'ng2-charts';
 import { GridOptions } from 'ag-grid';
-import { financialColumnsModel } from '../shared/financials-columns';
+import { financialColumnsModel } from '../shared/columns/financials-columns';
 
 @Component({
   selector: 'app-financial-analytics',

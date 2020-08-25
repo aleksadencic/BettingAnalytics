@@ -1,14 +1,16 @@
 import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SegmentationService } from '../services/segmentation.service';
-import * as variables from '../../environments/environment'
+import * as variables from '../../environments/environment';
 import { GridOptions } from 'ag-grid';
-import { segmentationColumnsModel } from '../shared/segmentation-columns';
+import { segmentationColumnsModel } from '../shared/columns/segmentation-columns';
 import * as segmentationActions from '../segmentation/segmentation.actions';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { getIsDataLaunching, getMembersData } from '../segmentation/segmentation.seletors';
 import { getIsSidemenuOpen } from '../financial-analytics/financial-analytics.selectors';
+import { MatDialog } from '@angular/material/dialog';
+import { SegmentationInfoDialogComponent } from '../shared/dialogs/segmentation-info-dialog/segmentation-info-dialog.component';
 
 @Component({
   selector: 'app-segmentation',
@@ -55,7 +57,8 @@ export class SegmentationComponent implements OnInit, OnDestroy {
 
   constructor(private zone: NgZone,
               private segmentationService: SegmentationService,
-              private store: Store<any>) {
+              private store: Store<any>,
+              public dialog: MatDialog) {
     this.selected = new FormControl(0);
     this.genders = variables.genders;
     this.budgets = variables.budgets;
@@ -179,7 +182,14 @@ export class SegmentationComponent implements OnInit, OnDestroy {
   }
 
   getSegmentationInfo(): void {
-    console.log('info');
+    const dialogRef = this.dialog.open(SegmentationInfoDialogComponent, {
+      height: '550px',
+      width: '1000px',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   ngOnDestroy(): void {

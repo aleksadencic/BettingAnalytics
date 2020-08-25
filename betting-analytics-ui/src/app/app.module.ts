@@ -20,9 +20,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartsModule } from 'ng2-charts';
 import { AgGridModule } from 'ag-grid-angular';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { SegmentationComponent } from './segmentation/segmentation.component';
-import { FinancialAnalyticsComponent } from './financial-analytics/financial-analytics.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SegmentationInfoDialogComponent } from './shared/dialogs/segmentation-info-dialog/segmentation-info-dialog.component';
 
 export const metaReducers: MetaReducer<{}>[] = [];
 export const reducers: ActionReducerMap<{}> = {
@@ -32,7 +31,8 @@ export const reducers: ActionReducerMap<{}> = {
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    SegmentationInfoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +51,7 @@ export const reducers: ActionReducerMap<{}> = {
     NgrxRouterStoreModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
     ChartsModule,
     AgGridModule,
     // NoopAnimationsModule,
