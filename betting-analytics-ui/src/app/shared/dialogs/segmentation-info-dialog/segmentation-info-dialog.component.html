@@ -1,4 +1,12 @@
-<h2 mat-dialog-title>Parameters Explanation</h2>
+<div fxLayout='row'>
+    <h2 mat-dialog-title fxLayoutAlign="center start">Parameters Explanation</h2>
+    <!-- <div fxLayout="row" fxLayoutAlign="center end">
+        <button mat-icon-button mat-dialog-close>
+          <mat-icon>close</mat-icon>
+        </button>
+    </div> -->
+</div>
+
 <mat-dialog-content class="mat-typography">
     <mat-accordion class="example-headers-align" multi>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -164,6 +172,3 @@
         </mat-expansion-panel>
     </mat-accordion>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-</mat-dialog-actions>
